@@ -1,0 +1,290 @@
+export const SCHOOLS = [
+  {
+    id: "clemson",
+    name: "Clemson University",
+    shortName: "Clemson",
+    primaryColor: "#F56600",
+    secondaryColor: "#522D80",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "ACC",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "unc",
+    name: "UNC Chapel Hill",
+    shortName: "UNC",
+    primaryColor: "#4B9CD3",
+    secondaryColor: "#13294B",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "ACC",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "maryland",
+    name: "University of Maryland",
+    shortName: "Maryland",
+    primaryColor: "#E03A3E",
+    secondaryColor: "#FFD520",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "Big Ten",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "syracuse",
+    name: "Syracuse University",
+    shortName: "Syracuse",
+    primaryColor: "#F76900",
+    secondaryColor: "#0D1B2A",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "ACC",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "duke",
+    name: "Duke University",
+    shortName: "Duke",
+    primaryColor: "#003087",
+    secondaryColor: "#E8E8E8",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "ACC",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "notre-dame",
+    name: "Notre Dame",
+    shortName: "Notre Dame",
+    primaryColor: "#0C2340",
+    secondaryColor: "#C99700",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "ACC",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "virginia",
+    name: "University of Virginia",
+    shortName: "Virginia",
+    primaryColor: "#232D4B",
+    secondaryColor: "#F84C1E",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "ACC",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "johns-hopkins",
+    name: "Johns Hopkins",
+    shortName: "Hopkins",
+    primaryColor: "#68ACE5",
+    secondaryColor: "#000000",
+    textOnPrimary: "#000000",
+    division: "D1",
+    conference: "Big Ten",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "penn-state",
+    name: "Penn State",
+    shortName: "Penn State",
+    primaryColor: "#1E407C",
+    secondaryColor: "#CCCCCC",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "Big Ten",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "nc-state",
+    name: "NC State",
+    shortName: "NC State",
+    primaryColor: "#CC0000",
+    secondaryColor: "#4D4D4D",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "ACC",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "ohio-state",
+    name: "Ohio State",
+    shortName: "Ohio State",
+    primaryColor: "#BB0000",
+    secondaryColor: "#666666",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "Big Ten",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "michigan",
+    name: "University of Michigan",
+    shortName: "Michigan",
+    primaryColor: "#00274C",
+    secondaryColor: "#FFCB05",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "Big Ten",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "georgetown",
+    name: "Georgetown University",
+    shortName: "Georgetown",
+    primaryColor: "#041E42",
+    secondaryColor: "#63666A",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "Big East",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "boston-college",
+    name: "Boston College",
+    shortName: "Boston College",
+    primaryColor: "#8B2035",
+    secondaryColor: "#AE9142",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "ACC",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "denver",
+    name: "University of Denver",
+    shortName: "Denver",
+    primaryColor: "#864024",
+    secondaryColor: "#C8A951",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "ASUN",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "loyola-maryland",
+    name: "Loyola Maryland",
+    shortName: "Loyola MD",
+    primaryColor: "#006633",
+    secondaryColor: "#54565B",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "Patriot",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "princeton",
+    name: "Princeton University",
+    shortName: "Princeton",
+    primaryColor: "#FF6600",
+    secondaryColor: "#000000",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "Ivy League",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "yale",
+    name: "Yale University",
+    shortName: "Yale",
+    primaryColor: "#00356B",
+    secondaryColor: "#888888",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "Ivy League",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "harvard",
+    name: "Harvard University",
+    shortName: "Harvard",
+    primaryColor: "#A51C30",
+    secondaryColor: "#888888",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "Ivy League",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "cornell",
+    name: "Cornell University",
+    shortName: "Cornell",
+    primaryColor: "#B31B1B",
+    secondaryColor: "#777777",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "Ivy League",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "villanova",
+    name: "Villanova University",
+    shortName: "Villanova",
+    primaryColor: "#00529B",
+    secondaryColor: "#009CE0",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "Big East",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "marquette",
+    name: "Marquette University",
+    shortName: "Marquette",
+    primaryColor: "#003595",
+    secondaryColor: "#FFCF01",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "Big East",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "james-madison",
+    name: "James Madison University",
+    shortName: "JMU",
+    primaryColor: "#450084",
+    secondaryColor: "#CBB677",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "Sun Belt",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "stony-brook",
+    name: "Stony Brook University",
+    shortName: "Stony Brook",
+    primaryColor: "#990000",
+    secondaryColor: "#808080",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "America East",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "army",
+    name: "Army West Point",
+    shortName: "Army",
+    primaryColor: "#000000",
+    secondaryColor: "#C8A951",
+    textOnPrimary: "#FFFFFF",
+    division: "D1",
+    conference: "Patriot",
+    sports: ["lacrosse"]
+  },
+  {
+    id: "undecided",
+    name: "Undecided",
+    shortName: "My Goal",
+    primaryColor: "#2A2A3E",
+    secondaryColor: "#4A4A6A",
+    textOnPrimary: "#F0EAFB",
+    division: null,
+    conference: null,
+    sports: ["lacrosse"]
+  }
+];
+
+export default SCHOOLS;
