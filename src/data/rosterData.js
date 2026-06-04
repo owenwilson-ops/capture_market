@@ -1,13 +1,15 @@
-// Roster and coaching staff placeholder data for all 25 D1 lacrosse programs.
-// All coach names, emails, and phone numbers are placeholders (placeholder: true).
+// Roster data for all 25 D1 lacrosse programs.
+// Coaching staff sourced from official athletics websites (June 2026).
+// Notre Dame, NC State, and Villanova retain placeholder staff (JS-rendered sites / no program).
+// Roster position/year data is representative for recruiting depth analysis.
 
 export const ROSTER_DATA = {
   clemson: {
     coachingStaff: [
-      { name: "Rachel Simmons", title: "Head Coach", email: "r.simmons@clemson.edu", phone: "864-555-0101", placeholder: true },
-      { name: "Erin Daley", title: "Associate Head Coach", email: "e.daley@clemson.edu", phone: "864-555-0102", placeholder: true },
-      { name: "Kayla Owens", title: "Assistant Coach", email: "k.owens@clemson.edu", phone: "864-555-0103", placeholder: true },
-      { name: "Tara Hensley", title: "Recruiting Coordinator", email: "t.hensley@clemson.edu", phone: "864-555-0104", placeholder: true }
+      { name: "Allison Kwolek", title: "Head Coach", email: "akwolek@clemson.edu", phone: "", photo: "", placeholder: false },
+      { name: "Bill Olin", title: "Associate Head Coach", email: "wolin@clemson.edu", phone: "", photo: "", placeholder: false },
+      { name: "Christina Esposito", title: "Assistant Coach", email: "", phone: "", photo: "", placeholder: false },
+      { name: "Landyn White", title: "Assistant Coach", email: "landyn@clemson.edu", phone: "", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -53,11 +55,12 @@ export const ROSTER_DATA = {
 
   unc: {
     coachingStaff: [
-      { name: "Jennifer Peele", title: "Head Coach", email: "j.peele@unc.edu", phone: "919-555-0201", placeholder: true },
-      { name: "Morgan Castillo", title: "Associate Head Coach", email: "m.castillo@unc.edu", phone: "919-555-0202", placeholder: true },
-      { name: "Amanda Frey", title: "Assistant Coach", email: "a.frey@unc.edu", phone: "919-555-0203", placeholder: true },
-      { name: "Brittany Shore", title: "Assistant Coach", email: "b.shore@unc.edu", phone: "919-555-0204", placeholder: true },
-      { name: "Courtney Walsh", title: "Director of Operations", email: "c.walsh@unc.edu", phone: "919-555-0205", placeholder: true }
+      { name: "Jenny Levy", title: "Head Coach", email: "uncwlax@uncaa.unc.edu", phone: "919-962-5220", photo: "", placeholder: false },
+      { name: "Katrina Dowd", title: "Associate Head Coach", email: "", phone: "919-962-5220", photo: "", placeholder: false },
+      { name: "Samantha Giacolone", title: "Assistant Coach", email: "sgiacolo@unc.edu", phone: "919-962-5220", photo: "", placeholder: false },
+      { name: "Marie McCool", title: "Assistant Coach", email: "mmccool@unc.edu", phone: "919-962-5220", photo: "", placeholder: false },
+      { name: "Kayla Wood", title: "Assistant Coach", email: "kaylwood@unc.edu", phone: "919-962-5220", photo: "", placeholder: false },
+      { name: "Cori Boyle", title: "Director of Operations", email: "csboyle@unc.edu", phone: "919-962-5220", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -102,10 +105,11 @@ export const ROSTER_DATA = {
 
   maryland: {
     coachingStaff: [
-      { name: "Cathy Dixon", title: "Head Coach", email: "c.dixon@umd.edu", phone: "301-555-0301", placeholder: true },
-      { name: "Lisa Park", title: "Associate Head Coach", email: "l.park@umd.edu", phone: "301-555-0302", placeholder: true },
-      { name: "Nicole Greer", title: "Assistant Coach", email: "n.greer@umd.edu", phone: "301-555-0303", placeholder: true },
-      { name: "Samantha Voigt", title: "Assistant Coach", email: "s.voigt@umd.edu", phone: "301-555-0304", placeholder: true }
+      { name: "Cathy Reese", title: "Head Coach", email: "creese@umd.edu", phone: "301-314-4273", photo: "", placeholder: false },
+      { name: "Jen Adams", title: "Associate Head Coach", email: "", phone: "", photo: "", placeholder: false },
+      { name: "Alex Aust Holman", title: "Assistant Coach", email: "", phone: "", photo: "", placeholder: false },
+      { name: "Lauri Kenis", title: "Assistant Coach", email: "lkenis@umd.edu", phone: "", photo: "", placeholder: false },
+      { name: "Nadine Hadnagy", title: "Director of Operations", email: "nhadnagy@umd.edu", phone: "", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -151,10 +155,10 @@ export const ROSTER_DATA = {
 
   syracuse: {
     coachingStaff: [
-      { name: "Sarah Mitchell", title: "Head Coach", email: "s.mitchell@syr.edu", phone: "315-555-0401", placeholder: true },
-      { name: "Dana Kopecki", title: "Associate Head Coach", email: "d.kopecki@syr.edu", phone: "315-555-0402", placeholder: true },
-      { name: "Leigh Rivera", title: "Assistant Coach", email: "l.rivera@syr.edu", phone: "315-555-0403", placeholder: true },
-      { name: "Megan Hollis", title: "Recruiting Coordinator", email: "m.hollis@syr.edu", phone: "315-555-0404", placeholder: true }
+      { name: "Regy Thorpe", title: "Head Coach", email: "", phone: "", photo: "", placeholder: false },
+      { name: "Caitlin Defliese Watkins", title: "Assistant Coach", email: "cdeflies@syr.edu", phone: "", photo: "", placeholder: false },
+      { name: "Nicole Levy", title: "Assistant Coach", email: "nilevy@syr.edu", phone: "", photo: "", placeholder: false },
+      { name: "Maggie Koch", title: "Assistant Coach", email: "mbkoch@syr.edu", phone: "", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -198,10 +202,11 @@ export const ROSTER_DATA = {
 
   duke: {
     coachingStaff: [
-      { name: "Kelly Isenbarger", title: "Head Coach", email: "k.isenbarger@duke.edu", phone: "919-555-0501", placeholder: true },
-      { name: "Paige Yarwood", title: "Associate Head Coach", email: "p.yarwood@duke.edu", phone: "919-555-0502", placeholder: true },
-      { name: "Renee Coker", title: "Assistant Coach", email: "r.coker@duke.edu", phone: "919-555-0503", placeholder: true },
-      { name: "Whitney Barnes", title: "Director of Operations", email: "w.barnes@duke.edu", phone: "919-555-0504", placeholder: true }
+      { name: "Kerstin Kimel", title: "Head Coach", email: "kmkimel@duke.edu", phone: "919-684-4166", photo: "", placeholder: false },
+      { name: "Nick Williams", title: "Associate Head Coach", email: "nick.williams@duke.edu", phone: "919-668-5758", photo: "", placeholder: false },
+      { name: "Brooke Bailey", title: "Assistant Coach", email: "brooke.griffin@duke.edu", phone: "", photo: "", placeholder: false },
+      { name: "Morgan Heisman", title: "Director of Operations", email: "morgan.heisman@duke.edu", phone: "919-668-5791", photo: "", placeholder: false },
+      { name: "Sarah L. Cooper", title: "Director of Operations", email: "sarah.l.cooper@duke.edu", phone: "919-668-5791", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -291,10 +296,9 @@ export const ROSTER_DATA = {
 
   virginia: {
     coachingStaff: [
-      { name: "Julie Myers", title: "Head Coach", email: "j.myers@virginia.edu", phone: "434-555-0701", placeholder: true },
-      { name: "Cassie Ikeda", title: "Associate Head Coach", email: "c.ikeda@virginia.edu", phone: "434-555-0702", placeholder: true },
-      { name: "Devon Pratt", title: "Assistant Coach", email: "d.pratt@virginia.edu", phone: "434-555-0703", placeholder: true },
-      { name: "Haley Weston", title: "Recruiting Coordinator", email: "h.weston@virginia.edu", phone: "434-555-0704", placeholder: true }
+      { name: "Sonia LaMonica", title: "Head Coach", email: "slamonica@virginia.edu", phone: "434-982-5125", photo: "", placeholder: false },
+      { name: "Caylee Waters", title: "Assistant Coach", email: "", phone: "", photo: "", placeholder: false },
+      { name: "Shanna Brady", title: "Assistant Coach", email: "", phone: "", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -338,9 +342,11 @@ export const ROSTER_DATA = {
 
   "johns-hopkins": {
     coachingStaff: [
-      { name: "Janine Tucker", title: "Head Coach", email: "j.tucker@jhu.edu", phone: "410-555-0801", placeholder: true },
-      { name: "Rachel Becker", title: "Associate Head Coach", email: "r.becker@jhu.edu", phone: "410-555-0802", placeholder: true },
-      { name: "Kristen Ott", title: "Assistant Coach", email: "k.ott@jhu.edu", phone: "410-555-0803", placeholder: true }
+      { name: "Tim McCormack", title: "Head Coach", email: "tim.mccormack@jhu.edu", phone: "", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/hopkinssports.com/images/2022/6/8/_Z9A3276_71.JPG?width=300", placeholder: false },
+      { name: "Dorrien Van Dyke", title: "Associate Head Coach", email: "dvandyk4@jhu.edu", phone: "631-456-0679", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/hopkinssports.com/images/2022/8/22/Van_Dyke_Z9A1853.JPG?width=300", placeholder: false },
+      { name: "Nicole Graziano", title: "Associate Head Coach", email: "ngrazia2@jhu.edu", phone: "973-647-5492", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/hopkinssports.com/images/2022/8/22/Graziano_Z9A1872.JPG?width=300", placeholder: false },
+      { name: "Jill Girardi", title: "Assistant Coach", email: "jgirar10@jh.edu", phone: "", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/hopkinssports.com/images/2023/10/24/Girardi-Jill_JZ82758.jpg?width=300", placeholder: false },
+      { name: "Tayler Kirtley", title: "Director of Operations", email: "tkirtle1@jh.edu", phone: "913-269-8182", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/hopkinssports.com/images/2023/10/24/Tayler_Kirtley-Arizona_State.jpg?width=300", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -383,10 +389,11 @@ export const ROSTER_DATA = {
 
   "penn-state": {
     coachingStaff: [
-      { name: "Missy Doherty", title: "Head Coach", email: "m.doherty@psu.edu", phone: "814-555-0901", placeholder: true },
-      { name: "Cara Roznowski", title: "Associate Head Coach", email: "c.roznowski@psu.edu", phone: "814-555-0902", placeholder: true },
-      { name: "Shannon Gilroy", title: "Assistant Coach", email: "s.gilroy@psu.edu", phone: "814-555-0903", placeholder: true },
-      { name: "Tess Cardinale", title: "Assistant Coach", email: "t.cardinale@psu.edu", phone: "814-555-0904", placeholder: true }
+      { name: "Kayla Treanor", title: "Head Coach", email: "kkt5545@psu.edu", phone: "", photo: "", placeholder: false },
+      { name: "Abby Rehfuss", title: "Associate Head Coach", email: "akr6594@psu.edu", phone: "", photo: "", placeholder: false },
+      { name: "Amy Moreau", title: "Assistant Coach", email: "arm7628@psu.edu", phone: "", photo: "", placeholder: false },
+      { name: "Kerrigan Miller", title: "Assistant Coach", email: "kvm6491@psu.edu", phone: "", photo: "", placeholder: false },
+      { name: "Katie Haus", title: "Director of Operations", email: "kzs968@psu.edu", phone: "", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -476,10 +483,11 @@ export const ROSTER_DATA = {
 
   "ohio-state": {
     coachingStaff: [
-      { name: "Amy Alley", title: "Head Coach", email: "a.alley@osu.edu", phone: "614-555-1101", placeholder: true },
-      { name: "Kristin Connor", title: "Associate Head Coach", email: "k.connor@osu.edu", phone: "614-555-1102", placeholder: true },
-      { name: "Lauren Schiffer", title: "Assistant Coach", email: "l.schiffer@osu.edu", phone: "614-555-1103", placeholder: true },
-      { name: "Brooke Sherwood", title: "Recruiting Coordinator", email: "b.sherwood@osu.edu", phone: "614-555-1104", placeholder: true }
+      { name: "Amanda Moore", title: "Head Coach", email: "moore.5113@osu.edu", phone: "", photo: "", placeholder: false },
+      { name: "Amanda Belichick", title: "Assistant Coach", email: "", phone: "", photo: "", placeholder: false },
+      { name: "Caroline Kimel", title: "Assistant Coach", email: "kimel.2@osu.edu", phone: "", photo: "", placeholder: false },
+      { name: "James Manning", title: "Director of Operations", email: "Manning.526@osu.edu", phone: "", photo: "", placeholder: false },
+      { name: "Stephani Schmidt", title: "Director of Operations", email: "", phone: "", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -524,10 +532,8 @@ export const ROSTER_DATA = {
 
   michigan: {
     coachingStaff: [
-      { name: "Jennie Ritter", title: "Head Coach", email: "j.ritter@umich.edu", phone: "734-555-1201", placeholder: true },
-      { name: "Claire Watkins", title: "Associate Head Coach", email: "c.watkins@umich.edu", phone: "734-555-1202", placeholder: true },
-      { name: "Stacy Norberg", title: "Assistant Coach", email: "s.norberg@umich.edu", phone: "734-555-1203", placeholder: true },
-      { name: "Lindsey Roth", title: "Assistant Coach", email: "l.roth@umich.edu", phone: "734-555-1204", placeholder: true }
+      { name: "Hannah Nielsen", title: "Head Coach", email: "lacrosse.w@umich.edu", phone: "", photo: "", placeholder: false },
+      { name: "Casey Pearsall", title: "Assistant Coach", email: "casep@umich.edu", phone: "", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -571,9 +577,10 @@ export const ROSTER_DATA = {
 
   georgetown: {
     coachingStaff: [
-      { name: "Ricky Fried", title: "Head Coach", email: "r.fried@georgetown.edu", phone: "202-555-1301", placeholder: true },
-      { name: "Molly Sheridan", title: "Associate Head Coach", email: "m.sheridan@georgetown.edu", phone: "202-555-1302", placeholder: true },
-      { name: "Abby Cooper", title: "Assistant Coach", email: "a.cooper@georgetown.edu", phone: "202-555-1303", placeholder: true }
+      { name: "Caitlyn Phipps", title: "Head Coach", email: "", phone: "", photo: "", placeholder: false },
+      { name: "Julie Morse", title: "Assistant Coach", email: "", phone: "", photo: "", placeholder: false },
+      { name: "Alice Johns", title: "Assistant Coach", email: "", phone: "", photo: "", placeholder: false },
+      { name: "Eloise Clevenger", title: "Director of Operations", email: "", phone: "", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -616,10 +623,10 @@ export const ROSTER_DATA = {
 
   "boston-college": {
     coachingStaff: [
-      { name: "Acacia Walker-Weinstein", title: "Head Coach", email: "a.walker@bc.edu", phone: "617-555-1401", placeholder: true },
-      { name: "Maggie Siegel", title: "Associate Head Coach", email: "m.siegel@bc.edu", phone: "617-555-1402", placeholder: true },
-      { name: "Noelle Lambert", title: "Assistant Coach", email: "n.lambert@bc.edu", phone: "617-555-1403", placeholder: true },
-      { name: "Colleen Flanagan", title: "Director of Operations", email: "c.flanagan@bc.edu", phone: "617-555-1404", placeholder: true }
+      { name: "Acacia Walker-Weinstein", title: "Head Coach", email: "walkerau@bc.edu", phone: "552-0481", photo: "", placeholder: false },
+      { name: "Jennifer Kent", title: "Associate Head Coach", email: "kentjf@bc.edu", phone: "", photo: "", placeholder: false },
+      { name: "Sam Apuzzo", title: "Assistant Coach", email: "apuzzosa@bc.edu", phone: "", photo: "", placeholder: false },
+      { name: "Callahan Kent", title: "Assistant Coach", email: "", phone: "", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -663,9 +670,10 @@ export const ROSTER_DATA = {
 
   denver: {
     coachingStaff: [
-      { name: "Lisa Buckley", title: "Head Coach", email: "l.buckley@du.edu", phone: "303-555-1501", placeholder: true },
-      { name: "Kate Cassidy", title: "Associate Head Coach", email: "k.cassidy@du.edu", phone: "303-555-1502", placeholder: true },
-      { name: "Allie Quinn", title: "Assistant Coach", email: "a.quinn@du.edu", phone: "303-555-1503", placeholder: true }
+      { name: "Liza Kelly", title: "Head Coach", email: "ekelly23@du.edu", phone: "303-871-4703", photo: "", placeholder: false },
+      { name: "Taylor VanThof", title: "Associate Head Coach / Offensive Coordinator", email: "", phone: "", photo: "", placeholder: false },
+      { name: "Brittany Read", title: "Assistant Coach", email: "", phone: "", photo: "", placeholder: false },
+      { name: "Megan Zeman", title: "Director of Operations", email: "", phone: "", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -708,9 +716,11 @@ export const ROSTER_DATA = {
 
   "loyola-maryland": {
     coachingStaff: [
-      { name: "Diane Geppi-Aikens", title: "Head Coach", email: "d.geppi@loyola.edu", phone: "410-555-1601", placeholder: true },
-      { name: "Kerry Whelihan", title: "Associate Head Coach", email: "k.whelihan@loyola.edu", phone: "410-555-1602", placeholder: true },
-      { name: "Meg Sweeney", title: "Assistant Coach", email: "m.sweeney@loyola.edu", phone: "410-555-1603", placeholder: true }
+      { name: "Jen Adams", title: "Head Coach", email: "jadams4@loyola.edu", phone: "410-617-2167", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/loyolagreyhounds.com/images/2026/1/22/adams.jpg", placeholder: false },
+      { name: "Dana Dobbie", title: "Assistant Coach", email: "dmdobbie@loyola.edu", phone: "410-617-5408", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/loyolagreyhounds.com/images/2018/8/28/Dobbie_Dana_DSC_3418.jpg?width=300", placeholder: false },
+      { name: "Caroline Hager", title: "Assistant Coach", email: "cjhager@loyola.edu", phone: "410-617-2633", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/loyolagreyhounds.com/images/2026/1/22/hager.jpg?width=300", placeholder: false },
+      { name: "Georgia Latch", title: "Assistant Coach", email: "gelatch@loyola.edu", phone: "", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/loyolagreyhounds.com/images/2026/1/22/latch.jpg?width=300", placeholder: false },
+      { name: "Maeve McKew", title: "Director of Lacrosse Operations", email: "mmckew@loyola.edu", phone: "", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -753,9 +763,10 @@ export const ROSTER_DATA = {
 
   princeton: {
     coachingStaff: [
-      { name: "Kristen Holmes", title: "Head Coach", email: "k.holmes@princeton.edu", phone: "609-555-1701", placeholder: true },
-      { name: "Liz Libby", title: "Associate Head Coach", email: "l.libby@princeton.edu", phone: "609-555-1702", placeholder: true },
-      { name: "Colleen Walsh", title: "Assistant Coach", email: "c.walsh@princeton.edu", phone: "609-555-1703", placeholder: true }
+      { name: "Jenn Cook", title: "Head Coach", email: "jc30@princeton.edu", phone: "609-258-2382", photo: "", placeholder: false },
+      { name: "Kerrin Maurer", title: "Associate Head Coach", email: "kmaurer@princeton.edu", phone: "609-258-8314", photo: "", placeholder: false },
+      { name: "Molly Dougherty", title: "Assistant Coach", email: "molly.dougherty@princeton.edu", phone: "", photo: "", placeholder: false },
+      { name: "Ali Robinson", title: "Assistant Coach", email: "ar1842@princeton.edu", phone: "", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -798,9 +809,10 @@ export const ROSTER_DATA = {
 
   yale: {
     coachingStaff: [
-      { name: "Pam Stuper", title: "Head Coach", email: "p.stuper@yale.edu", phone: "203-555-1801", placeholder: true },
-      { name: "Kara Donahue", title: "Associate Head Coach", email: "k.donahue@yale.edu", phone: "203-555-1802", placeholder: true },
-      { name: "Ellie Cross", title: "Assistant Coach", email: "e.cross@yale.edu", phone: "203-555-1803", placeholder: true }
+      { name: "Erica Bamford", title: "Head Coach", email: "erica.bamford@yale.edu", phone: "203-432-1486", photo: "", placeholder: false },
+      { name: "Colleen Smith", title: "Associate Head Coach", email: "", phone: "", photo: "", placeholder: false },
+      { name: "Molly Palella", title: "Assistant Coach / Recruiting Coordinator", email: "", phone: "", photo: "", placeholder: false },
+      { name: "Brooklyn Neumen", title: "Assistant Coach", email: "", phone: "", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -843,9 +855,12 @@ export const ROSTER_DATA = {
 
   harvard: {
     coachingStaff: [
-      { name: "Liz Keady", title: "Head Coach", email: "l.keady@harvard.edu", phone: "617-555-1901", placeholder: true },
-      { name: "Jamie Sherwin", title: "Associate Head Coach", email: "j.sherwin@harvard.edu", phone: "617-555-1902", placeholder: true },
-      { name: "Nora Casey", title: "Assistant Coach", email: "n.casey@harvard.edu", phone: "617-555-1903", placeholder: true }
+      { name: "Devon Wills", title: "Head Coach", email: "devon_wills@fas.harvard.edu", phone: "617-495-3245", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/gocrimson.com/images/2021/8/31/DHA_2122_Staff_Photos_Devon_Wills_0025.jpg?width=300", placeholder: false },
+      { name: "Becca Block", title: "Associate Head Coach", email: "rebecca_block@fas.harvard.edu", phone: "", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/gocrimson.com/images/2020/3/25/block_becca.jpg?width=300", placeholder: false },
+      { name: "Kenzie Kent", title: "Assistant Coach", email: "makenziekent@fas.harvard.edu", phone: "", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/gocrimson.com/images/2020/3/25/kenzie_kent.jpg?width=300", placeholder: false },
+      { name: "Sydney Scales", title: "Assistant Coach", email: "", phone: "", photo: "", placeholder: false },
+      { name: "Beth Doran", title: "Director of Operations", email: "bethdoran@fas.harvard.edu", phone: "", photo: "", placeholder: false },
+      { name: "Megan Finn", title: "Athletic Trainer", email: "mfinn@fas.harvard.edu", phone: "617-495-2200", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -888,9 +903,11 @@ export const ROSTER_DATA = {
 
   cornell: {
     coachingStaff: [
-      { name: "Vanessa Metcalf", title: "Head Coach", email: "v.metcalf@cornell.edu", phone: "607-555-2001", placeholder: true },
-      { name: "Tara Hanley", title: "Associate Head Coach", email: "t.hanley@cornell.edu", phone: "607-555-2002", placeholder: true },
-      { name: "Brooke Fallon", title: "Assistant Coach", email: "b.fallon@cornell.edu", phone: "607-555-2003", placeholder: true }
+      { name: "Jenny Graap", title: "Head Coach", email: "womenslax@cornell.edu", phone: "255-4979", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/cornellbigred.com/images/2025/9/5/Graap_Jenny_25_crop.jpg?width=300", placeholder: false },
+      { name: "Sarah Burlingame", title: "Assistant Coach", email: "womenslax@cornell.edu", phone: "561-628-9425", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/cornellbigred.com/images/2023/9/1/Sarah_Burlingame_23_Crop.jpg?width=300", placeholder: false },
+      { name: "Riley VanHoltz", title: "Assistant Coach", email: "womenslax@cornell.edu", phone: "", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/cornellbigred.com/images/2024/9/19/Vantloltz_Riley_24_crop.JPG?width=300", placeholder: false },
+      { name: "Ashley O'Brien", title: "Assistant Coach", email: "womenslax@cornell.edu", phone: "585-764-3562", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/cornellbigred.com/images/2023/9/1/Ashley_OBrien_23_Crop.jpg?width=300", placeholder: false },
+      { name: "Rachel Rosenberg", title: "Director of Operations", email: "rr823@cornell.edu", phone: "", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/cornellbigred.com/images/2025/1/13/Untitled-3.jpg?width=300", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -978,10 +995,10 @@ export const ROSTER_DATA = {
 
   marquette: {
     coachingStaff: [
-      { name: "Meredith Black", title: "Head Coach", email: "m.black@marquette.edu", phone: "414-555-2201", placeholder: true },
-      { name: "Erin Coakley", title: "Associate Head Coach", email: "e.coakley@marquette.edu", phone: "414-555-2202", placeholder: true },
-      { name: "Anna Steele", title: "Assistant Coach", email: "a.steele@marquette.edu", phone: "414-555-2203", placeholder: true },
-      { name: "Jillian Park", title: "Recruiting Coordinator", email: "j.park@marquette.edu", phone: "414-555-2204", placeholder: true }
+      { name: "Meredith Black", title: "Head Coach", email: "meredith.black@marquette.edu", phone: "414-288-4958", photo: "", placeholder: false },
+      { name: "Caitlin Wolf", title: "Associate Head Coach", email: "", phone: "", photo: "", placeholder: false },
+      { name: "Jill Rizzo", title: "Assistant Coach", email: "", phone: "", photo: "", placeholder: false },
+      { name: "Emilia Ward", title: "Assistant Coach", email: "emilia.ward@marquette.edu", phone: "414-288-2006", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -1025,9 +1042,10 @@ export const ROSTER_DATA = {
 
   "james-madison": {
     coachingStaff: [
-      { name: "Shelley Klaes-Bawcombe", title: "Head Coach", email: "s.klaes@jmu.edu", phone: "540-555-2301", placeholder: true },
-      { name: "Haley Wentworth", title: "Associate Head Coach", email: "h.wentworth@jmu.edu", phone: "540-555-2302", placeholder: true },
-      { name: "Sara Clifton", title: "Assistant Coach", email: "s.clifton@jmu.edu", phone: "540-555-2303", placeholder: true }
+      { name: "Shelley Klaes", title: "Head Coach", email: "klaessc@jmu.edu", phone: "540-568-3618", photo: "", placeholder: false },
+      { name: "Kateri Linville", title: "Associate Head Coach", email: "linvilkc@jmu.edu", phone: "540-568-7356", photo: "", placeholder: false },
+      { name: "Scott Arbogast", title: "Assistant Coach", email: "", phone: "", photo: "", placeholder: false },
+      { name: "Emily Garrity", title: "Assistant Coach", email: "", phone: "", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -1071,9 +1089,10 @@ export const ROSTER_DATA = {
 
   "stony-brook": {
     coachingStaff: [
-      { name: "Joe Spallina", title: "Head Coach", email: "j.spallina@stonybrook.edu", phone: "631-555-2401", placeholder: true },
-      { name: "Nicole Wiesner", title: "Associate Head Coach", email: "n.wiesner@stonybrook.edu", phone: "631-555-2402", placeholder: true },
-      { name: "Cassidy Kelley", title: "Assistant Coach", email: "c.kelley@stonybrook.edu", phone: "631-555-2403", placeholder: true }
+      { name: "Joe Spallina", title: "Head Coach", email: "joseph.spallina@stonybrook.edu", phone: "631-632-4089", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/stonybrook.sidearmsports.com/images/2016/9/14/Joe_Spallina.jpg?width=300", placeholder: false },
+      { name: "Sydney Pirreca", title: "Associate Head Coach / Offensive Coordinator", email: "Sydney.Pirreca@stonybrook.edu", phone: "", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/stonybrook.sidearmsports.com/images/2024/12/3/Sydney_Perreca_1_.jpg?width=300", placeholder: false },
+      { name: "Clare Levy", title: "Defensive Coordinator", email: "clare.levy@stonybrook.edu", phone: "", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/stonybrook.sidearmsports.com/images/2024/12/5/Clare_Levy_3_.jpg?width=300", placeholder: false },
+      { name: "Charlotte Verhulst", title: "Assistant Coach", email: "charlotte.verhulst@stonybrook.edu", phone: "", photo: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/stonybrook.sidearmsports.com/images/2024/12/9/Charlotte_Verhulst_2_.jpg?width=300", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
@@ -1116,9 +1135,10 @@ export const ROSTER_DATA = {
 
   army: {
     coachingStaff: [
-      { name: "Jen Grimm", title: "Head Coach", email: "j.grimm@westpoint.edu", phone: "845-555-2501", placeholder: true },
-      { name: "Lauren Sullivan", title: "Associate Head Coach", email: "l.sullivan@westpoint.edu", phone: "845-555-2502", placeholder: true },
-      { name: "Kerry Hogan", title: "Assistant Coach", email: "k.hogan@westpoint.edu", phone: "845-555-2503", placeholder: true }
+      { name: "Michelle Tumolo", title: "Head Coach", email: "michelle.tumolo@westpoint.edu", phone: "845-938-1826", photo: "", placeholder: false },
+      { name: "Samantha Cermack", title: "Associate Head Coach", email: "samantha.cermack@westpoint.edu", phone: "", photo: "", placeholder: false },
+      { name: "Katie Erbe", title: "Assistant Coach", email: "kathleen.erbe@westpoint.edu", phone: "", photo: "", placeholder: false },
+      { name: "Charlotte Sofield", title: "Assistant Coach", email: "charlotte.sofield@westpoint.edu", phone: "", photo: "", placeholder: false }
     ],
     roster: [
       { position: "Attack", year: "SR", gradYear: 2025 },
