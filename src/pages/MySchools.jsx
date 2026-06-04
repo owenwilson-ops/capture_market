@@ -451,25 +451,26 @@ function StatLeaders({ schoolId, rosterData, school }) {
           ))}
         </div>
         <p style={{ fontSize: '11px', color: 'rgba(240,234,248,0.25)', textAlign: 'center', lineHeight: 1.6, marginTop: '16px' }}>
-          Stat leaders via Inside Lacrosse. Film links open a YouTube search for each athlete.
+          Season stats from the program's official athletics site. Film links open a YouTube search for each athlete.
         </p>
       </div>
     )
   }
 
-  // No season stats loaded yet — fall back to the current roster so recruits can
-  // still pull up film on the upperclassmen they would be competing with.
+  // No scoring stats for this program (its stats live in an external widget, or
+  // the stats scrape hasn't run). Show the full roster, all classes, so recruits
+  // can still pull up film on any player — including underclass standouts.
+  const classOrder = { SR: 0, JR: 1, SO: 2, FR: 3 }
   const watchable = rosterData.roster
-    .filter(p => p.name && (p.year === 'JR' || p.year === 'SR'))
-    .slice(0, 12)
+    .filter(p => p.name)
+    .slice()
+    .sort((a, b) => (classOrder[a.year] ?? 9) - (classOrder[b.year] ?? 9) || a.name.localeCompare(b.name))
 
   return (
     <div>
       <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '14px', marginBottom: '14px' }}>
         <p style={{ fontSize: '12px', color: 'rgba(240,234,248,0.5)', lineHeight: 1.6 }}>
-          Live scoring leaders are not loaded yet. Add a parse.bot API key and run
-          <span style={{ fontFamily: "'Space Mono', monospace", color: 'rgba(240,234,248,0.7)' }}> npm run fetch-stats </span>
-          to rank players by scoring. Until then, here is the current roster so you can watch film.
+          Scoring leaders aren't available for this program yet. Here is the full roster so you can watch film on any player.
         </p>
       </div>
       {watchable.length > 0 ? (
