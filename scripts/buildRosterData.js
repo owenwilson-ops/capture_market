@@ -15,6 +15,7 @@ import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { SCHOOLS } from '../src/data/schools.js'
 import { ROSTER_DATA as EXISTING } from '../src/data/rosterData.js'
+import { REAL_COACHING_STAFF } from '../src/data/realCoachingStaff.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ATHLETICS_FILE = join(__dirname, 'output', 'athletics.json')
@@ -27,40 +28,70 @@ if (!existsSync(ATHLETICS_FILE)) {
 
 const scraped = JSON.parse(readFileSync(ATHLETICS_FILE, 'utf-8'))
 
+// realCoachingStaff.js keys schools without hyphens, with a couple of short forms.
+const REAL_KEY_ALIAS = { 'loyola-maryland': 'loyolamd', 'james-madison': 'jmu' }
+const realStaffFor = (id) =>
+  (REAL_COACHING_STAFF[id] ||
+    REAL_COACHING_STAFF[REAL_KEY_ALIAS[id]] ||
+    REAL_COACHING_STAFF[id.replace(/-/g, '')])?.coachingStaff
+
 const result = {}
-let updated = 0
-let preserved = 0
+let scrapedRosters = 0
+let coachFallback = 0
+let placeholder = 0
 
 for (const school of SCHOOLS) {
   if (school.id === 'undecided') continue
   const data = scraped[school.id]
   const existing = EXISTING[school.id]
+  const realStaff = realStaffFor(school.id)
 
-  if (data && data.ok && (data.staff.length || data.players.length)) {
-    result[school.id] = {
-      lastUpdated: data.scrapedAt,
-      source: data.sourceUrl,
-      coachingStaff: data.staff.map((s) => ({
-        name: s.name,
-        title: s.title,
-        email: s.email,
-        phone: s.phone,
-        ...(s.photo ? { photo: s.photo } : {}),
-        placeholder: false,
-      })),
-      roster: data.players.map((p) => ({
+  const hasScrapedStaff = data && data.ok && data.staff?.length
+  const hasScrapedRoster = data && data.ok && data.players?.length
+
+  // Coaches: live scrape (richest, includes photos) > hand-collected real
+  // coaches from the athletics-site sweep > whatever placeholder existed.
+  let coachingStaff
+  if (hasScrapedStaff) {
+    coachingStaff = data.staff.map((s) => ({
+      name: s.name,
+      title: s.title,
+      email: s.email,
+      phone: s.phone,
+      ...(s.photo ? { photo: s.photo } : {}),
+      placeholder: false,
+    }))
+  } else if (realStaff?.some((c) => c.placeholder === false)) {
+    coachingStaff = realStaff
+  } else {
+    coachingStaff = existing?.coachingStaff || []
+  }
+
+  // Roster: only the live scrape has real player data; otherwise keep the
+  // existing placeholder roster so the depth chart still renders.
+  const roster = hasScrapedRoster
+    ? data.players.map((p) => ({
         name: p.name,
         position: p.position,
         year: p.year,
         gradYear: p.gradYear,
         ...(p.jersey != null ? { jersey: p.jersey } : {}),
-      })),
-    }
-    updated++
-  } else if (existing) {
-    result[school.id] = existing
-    preserved++
-    console.warn(`  preserved ${school.id} (${data ? data.error : 'not scraped'})`)
+      }))
+    : existing?.roster || []
+
+  const entry = { coachingStaff, roster }
+  if (hasScrapedRoster) entry.source = data.sourceUrl
+  if (data?.ok && (hasScrapedStaff || hasScrapedRoster)) entry.lastUpdated = data.scrapedAt
+  result[school.id] = entry
+
+  if (hasScrapedRoster) {
+    scrapedRosters++
+  } else if (coachingStaff.some((c) => c.placeholder === false)) {
+    coachFallback++
+    console.warn(`  ${school.id}: real coaches (fallback), placeholder roster`)
+  } else {
+    placeholder++
+    console.warn(`  ${school.id}: placeholder only (${data ? data.error : 'not scraped'})`)
   }
 }
 
@@ -95,5 +126,6 @@ export default ROSTER_DATA;
 
 writeFileSync(ROSTER_DATA_PATH, `${header}\n${body}`)
 console.log(`\nWrote ${ROSTER_DATA_PATH}`)
-console.log(`  ${updated} schools updated from live scrape`)
-console.log(`  ${preserved} schools preserved (scrape failed or missing)`)
+console.log(`  ${scrapedRosters} schools with live scraped rosters + coaches`)
+console.log(`  ${coachFallback} schools with real coaches (fallback) + placeholder roster`)
+console.log(`  ${placeholder} schools placeholder only`)

@@ -7,8 +7,6 @@
 
 export const ROSTER_DATA = {
   "clemson": {
-    "lastUpdated": "2026-06-04T14:27:21.813Z",
-    "source": "https://clemsontigers.com/sports/womens-lacrosse/roster",
     "coachingStaff": [
       {
         "name": "Allison Kwolek",
@@ -296,11 +294,11 @@ export const ROSTER_DATA = {
         "gradYear": 2026,
         "jersey": 5
       }
-    ]
+    ],
+    "source": "https://clemsontigers.com/sports/womens-lacrosse/roster",
+    "lastUpdated": "2026-06-04T14:27:21.813Z"
   },
   "unc": {
-    "lastUpdated": "2026-06-04T14:27:26.372Z",
-    "source": "https://goheels.com/sports/womens-lacrosse/roster",
     "coachingStaff": [
       {
         "name": "Jenny Levy",
@@ -596,11 +594,11 @@ export const ROSTER_DATA = {
         "gradYear": 2028,
         "jersey": "88"
       }
-    ]
+    ],
+    "source": "https://goheels.com/sports/womens-lacrosse/roster",
+    "lastUpdated": "2026-06-04T14:27:26.372Z"
   },
   "maryland": {
-    "lastUpdated": "2026-06-04T14:27:36.428Z",
-    "source": "https://umterps.com/sports/womens-lacrosse/roster",
     "coachingStaff": [
       {
         "name": "Cathy Reese",
@@ -889,11 +887,11 @@ export const ROSTER_DATA = {
         "gradYear": 2026,
         "jersey": "44"
       }
-    ]
+    ],
+    "source": "https://umterps.com/sports/womens-lacrosse/roster",
+    "lastUpdated": "2026-06-04T14:27:36.428Z"
   },
   "syracuse": {
-    "lastUpdated": "2026-06-04T14:27:40.942Z",
-    "source": "https://cuse.com/sports/womens-lacrosse/roster",
     "coachingStaff": [
       {
         "name": "Regy Thorpe",
@@ -1195,11 +1193,11 @@ export const ROSTER_DATA = {
         "gradYear": 2029,
         "jersey": "99"
       }
-    ]
+    ],
+    "source": "https://cuse.com/sports/womens-lacrosse/roster",
+    "lastUpdated": "2026-06-04T14:27:40.942Z"
   },
   "duke": {
-    "lastUpdated": "2026-06-04T14:27:46.072Z",
-    "source": "https://goduke.com/sports/womens-lacrosse/roster",
     "coachingStaff": [
       {
         "name": "Kerstin Kimel",
@@ -1503,7 +1501,9 @@ export const ROSTER_DATA = {
         "gradYear": 2029,
         "jersey": "40"
       }
-    ]
+    ],
+    "source": "https://goduke.com/sports/womens-lacrosse/roster",
+    "lastUpdated": "2026-06-04T14:27:46.072Z"
   },
   "notre-dame": {
     "coachingStaff": [
@@ -1720,8 +1720,6 @@ export const ROSTER_DATA = {
     ]
   },
   "virginia": {
-    "lastUpdated": "2026-06-04T14:27:59.821Z",
-    "source": "https://virginiasports.com/sports/wlax/roster",
     "coachingStaff": [
       {
         "name": "Sonia LaMonica",
@@ -2024,30 +2022,51 @@ export const ROSTER_DATA = {
         "gradYear": 2029,
         "jersey": 6
       }
-    ]
+    ],
+    "source": "https://virginiasports.com/sports/wlax/roster",
+    "lastUpdated": "2026-06-04T14:27:59.821Z"
   },
   "johns-hopkins": {
     "coachingStaff": [
       {
-        "name": "Janine Tucker",
+        "name": "Tim McCormack",
         "title": "Head Coach",
-        "email": "j.tucker@jhu.edu",
-        "phone": "410-555-0801",
-        "placeholder": true
+        "email": "tim.mccormack@jhu.edu",
+        "phone": "",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/hopkinssports.com/images/2022/6/8/_Z9A3276_71.JPG?width=300",
+        "placeholder": false
       },
       {
-        "name": "Rachel Becker",
+        "name": "Dorrien Van Dyke",
         "title": "Associate Head Coach",
-        "email": "r.becker@jhu.edu",
-        "phone": "410-555-0802",
-        "placeholder": true
+        "email": "dvandyk4@jhu.edu",
+        "phone": "631-456-0679",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/hopkinssports.com/images/2022/8/22/Van_Dyke_Z9A1853.JPG?width=300",
+        "placeholder": false
       },
       {
-        "name": "Kristen Ott",
+        "name": "Nicole Graziano",
+        "title": "Associate Head Coach",
+        "email": "ngrazia2@jhu.edu",
+        "phone": "973-647-5492",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/hopkinssports.com/images/2022/8/22/Graziano_Z9A1872.JPG?width=300",
+        "placeholder": false
+      },
+      {
+        "name": "Jill Girardi",
         "title": "Assistant Coach",
-        "email": "k.ott@jhu.edu",
-        "phone": "410-555-0803",
-        "placeholder": true
+        "email": "jgirar10@jh.edu",
+        "phone": "",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/hopkinssports.com/images/2023/10/24/Girardi-Jill_JZ82758.jpg?width=300",
+        "placeholder": false
+      },
+      {
+        "name": "Tayler Kirtley",
+        "title": "Director of Operations",
+        "email": "tkirtle1@jh.edu",
+        "phone": "913-269-8182",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/hopkinssports.com/images/2023/10/24/Tayler_Kirtley-Arizona_State.jpg?width=300",
+        "placeholder": false
       }
     ],
     "roster": [
@@ -2229,8 +2248,6 @@ export const ROSTER_DATA = {
     ]
   },
   "penn-state": {
-    "lastUpdated": "2026-06-04T14:28:07.125Z",
-    "source": "https://gopsusports.com/sports/womens-lacrosse/roster",
     "coachingStaff": [
       {
         "name": "Kayla Treanor",
@@ -2556,7 +2573,9 @@ export const ROSTER_DATA = {
         "gradYear": 2026,
         "jersey": 55
       }
-    ]
+    ],
+    "source": "https://gopsusports.com/sports/womens-lacrosse/roster",
+    "lastUpdated": "2026-06-04T14:28:07.125Z"
   },
   "nc-state": {
     "coachingStaff": [
@@ -2766,8 +2785,6 @@ export const ROSTER_DATA = {
     ]
   },
   "ohio-state": {
-    "lastUpdated": "2026-06-04T14:28:18.482Z",
-    "source": "https://ohiostatebuckeyes.com/sports/womens-lacrosse/roster",
     "coachingStaff": [
       {
         "name": "Amanda Moore",
@@ -3084,12 +3101,29 @@ export const ROSTER_DATA = {
         "gradYear": 2026,
         "jersey": "45"
       }
-    ]
+    ],
+    "source": "https://ohiostatebuckeyes.com/sports/womens-lacrosse/roster",
+    "lastUpdated": "2026-06-04T14:28:18.482Z"
   },
   "michigan": {
-    "lastUpdated": "2026-06-04T14:28:23.004Z",
-    "source": "https://mgoblue.com/sports/womens-lacrosse/roster",
-    "coachingStaff": [],
+    "coachingStaff": [
+      {
+        "name": "Hannah Nielsen",
+        "title": "Head Coach",
+        "email": "lacrosse.w@umich.edu",
+        "phone": "",
+        "photo": "",
+        "placeholder": false
+      },
+      {
+        "name": "Casey Pearsall",
+        "title": "Assistant Coach",
+        "email": "casep@umich.edu",
+        "phone": "",
+        "photo": "",
+        "placeholder": false
+      }
+    ],
     "roster": [
       {
         "name": "Ceci Stein",
@@ -3357,30 +3391,43 @@ export const ROSTER_DATA = {
         "gradYear": 2028,
         "jersey": "46"
       }
-    ]
+    ],
+    "source": "https://mgoblue.com/sports/womens-lacrosse/roster",
+    "lastUpdated": "2026-06-04T14:28:23.004Z"
   },
   "georgetown": {
     "coachingStaff": [
       {
-        "name": "Ricky Fried",
+        "name": "Caitlyn Phipps",
         "title": "Head Coach",
-        "email": "r.fried@georgetown.edu",
-        "phone": "202-555-1301",
-        "placeholder": true
+        "email": "",
+        "phone": "",
+        "photo": "",
+        "placeholder": false
       },
       {
-        "name": "Molly Sheridan",
-        "title": "Associate Head Coach",
-        "email": "m.sheridan@georgetown.edu",
-        "phone": "202-555-1302",
-        "placeholder": true
-      },
-      {
-        "name": "Abby Cooper",
+        "name": "Julie Morse",
         "title": "Assistant Coach",
-        "email": "a.cooper@georgetown.edu",
-        "phone": "202-555-1303",
-        "placeholder": true
+        "email": "",
+        "phone": "",
+        "photo": "",
+        "placeholder": false
+      },
+      {
+        "name": "Alice Johns",
+        "title": "Assistant Coach",
+        "email": "",
+        "phone": "",
+        "photo": "",
+        "placeholder": false
+      },
+      {
+        "name": "Eloise Clevenger",
+        "title": "Director of Operations",
+        "email": "",
+        "phone": "",
+        "photo": "",
+        "placeholder": false
       }
     ],
     "roster": [
@@ -3562,8 +3609,6 @@ export const ROSTER_DATA = {
     ]
   },
   "boston-college": {
-    "lastUpdated": "2026-06-04T14:28:35.787Z",
-    "source": "https://bceagles.com/sports/womens-lacrosse/roster",
     "coachingStaff": [
       {
         "name": "Acacia Walker-Weinstein",
@@ -3863,30 +3908,43 @@ export const ROSTER_DATA = {
         "gradYear": 2026,
         "jersey": "88"
       }
-    ]
+    ],
+    "source": "https://bceagles.com/sports/womens-lacrosse/roster",
+    "lastUpdated": "2026-06-04T14:28:35.787Z"
   },
   "denver": {
     "coachingStaff": [
       {
-        "name": "Lisa Buckley",
+        "name": "Liza Kelly",
         "title": "Head Coach",
-        "email": "l.buckley@du.edu",
-        "phone": "303-555-1501",
-        "placeholder": true
+        "email": "ekelly23@du.edu",
+        "phone": "303-871-4703",
+        "photo": "",
+        "placeholder": false
       },
       {
-        "name": "Kate Cassidy",
-        "title": "Associate Head Coach",
-        "email": "k.cassidy@du.edu",
-        "phone": "303-555-1502",
-        "placeholder": true
+        "name": "Taylor VanThof",
+        "title": "Associate Head Coach / Offensive Coordinator",
+        "email": "",
+        "phone": "",
+        "photo": "",
+        "placeholder": false
       },
       {
-        "name": "Allie Quinn",
+        "name": "Brittany Read",
         "title": "Assistant Coach",
-        "email": "a.quinn@du.edu",
-        "phone": "303-555-1503",
-        "placeholder": true
+        "email": "",
+        "phone": "",
+        "photo": "",
+        "placeholder": false
+      },
+      {
+        "name": "Megan Zeman",
+        "title": "Director of Operations",
+        "email": "",
+        "phone": "",
+        "photo": "",
+        "placeholder": false
       }
     ],
     "roster": [
@@ -4070,25 +4128,44 @@ export const ROSTER_DATA = {
   "loyola-maryland": {
     "coachingStaff": [
       {
-        "name": "Diane Geppi-Aikens",
+        "name": "Jen Adams",
         "title": "Head Coach",
-        "email": "d.geppi@loyola.edu",
-        "phone": "410-555-1601",
-        "placeholder": true
+        "email": "jadams4@loyola.edu",
+        "phone": "410-617-2167",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/loyolagreyhounds.com/images/2026/1/22/adams.jpg",
+        "placeholder": false
       },
       {
-        "name": "Kerry Whelihan",
-        "title": "Associate Head Coach",
-        "email": "k.whelihan@loyola.edu",
-        "phone": "410-555-1602",
-        "placeholder": true
-      },
-      {
-        "name": "Meg Sweeney",
+        "name": "Dana Dobbie",
         "title": "Assistant Coach",
-        "email": "m.sweeney@loyola.edu",
-        "phone": "410-555-1603",
-        "placeholder": true
+        "email": "dmdobbie@loyola.edu",
+        "phone": "410-617-5408",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/loyolagreyhounds.com/images/2018/8/28/Dobbie_Dana_DSC_3418.jpg?width=300",
+        "placeholder": false
+      },
+      {
+        "name": "Caroline Hager",
+        "title": "Assistant Coach",
+        "email": "cjhager@loyola.edu",
+        "phone": "410-617-2633",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/loyolagreyhounds.com/images/2026/1/22/hager.jpg?width=300",
+        "placeholder": false
+      },
+      {
+        "name": "Georgia Latch",
+        "title": "Assistant Coach",
+        "email": "gelatch@loyola.edu",
+        "phone": "",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/loyolagreyhounds.com/images/2026/1/22/latch.jpg?width=300",
+        "placeholder": false
+      },
+      {
+        "name": "Maeve McKew",
+        "title": "Director of Lacrosse Operations",
+        "email": "mmckew@loyola.edu",
+        "phone": "",
+        "photo": "",
+        "placeholder": false
       }
     ],
     "roster": [
@@ -4270,8 +4347,6 @@ export const ROSTER_DATA = {
     ]
   },
   "princeton": {
-    "lastUpdated": "2026-06-04T14:28:54.936Z",
-    "source": "https://goprincetontigers.com/sports/womens-lacrosse/roster",
     "coachingStaff": [
       {
         "name": "Jenn Cook",
@@ -4538,30 +4613,43 @@ export const ROSTER_DATA = {
         "gradYear": 2028,
         "jersey": "40"
       }
-    ]
+    ],
+    "source": "https://goprincetontigers.com/sports/womens-lacrosse/roster",
+    "lastUpdated": "2026-06-04T14:28:54.936Z"
   },
   "yale": {
     "coachingStaff": [
       {
-        "name": "Pam Stuper",
+        "name": "Erica Bamford",
         "title": "Head Coach",
-        "email": "p.stuper@yale.edu",
-        "phone": "203-555-1801",
-        "placeholder": true
+        "email": "erica.bamford@yale.edu",
+        "phone": "203-432-1486",
+        "photo": "",
+        "placeholder": false
       },
       {
-        "name": "Kara Donahue",
+        "name": "Colleen Smith",
         "title": "Associate Head Coach",
-        "email": "k.donahue@yale.edu",
-        "phone": "203-555-1802",
-        "placeholder": true
+        "email": "",
+        "phone": "",
+        "photo": "",
+        "placeholder": false
       },
       {
-        "name": "Ellie Cross",
+        "name": "Molly Palella",
+        "title": "Assistant Coach / Recruiting Coordinator",
+        "email": "",
+        "phone": "",
+        "photo": "",
+        "placeholder": false
+      },
+      {
+        "name": "Brooklyn Neumen",
         "title": "Assistant Coach",
-        "email": "e.cross@yale.edu",
-        "phone": "203-555-1803",
-        "placeholder": true
+        "email": "",
+        "phone": "",
+        "photo": "",
+        "placeholder": false
       }
     ],
     "roster": [
@@ -4745,25 +4833,52 @@ export const ROSTER_DATA = {
   "harvard": {
     "coachingStaff": [
       {
-        "name": "Liz Keady",
+        "name": "Devon Wills",
         "title": "Head Coach",
-        "email": "l.keady@harvard.edu",
-        "phone": "617-555-1901",
-        "placeholder": true
+        "email": "devon_wills@fas.harvard.edu",
+        "phone": "617-495-3245",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/gocrimson.com/images/2021/8/31/DHA_2122_Staff_Photos_Devon_Wills_0025.jpg?width=300",
+        "placeholder": false
       },
       {
-        "name": "Jamie Sherwin",
+        "name": "Becca Block",
         "title": "Associate Head Coach",
-        "email": "j.sherwin@harvard.edu",
-        "phone": "617-555-1902",
-        "placeholder": true
+        "email": "rebecca_block@fas.harvard.edu",
+        "phone": "",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/gocrimson.com/images/2020/3/25/block_becca.jpg?width=300",
+        "placeholder": false
       },
       {
-        "name": "Nora Casey",
+        "name": "Kenzie Kent",
         "title": "Assistant Coach",
-        "email": "n.casey@harvard.edu",
-        "phone": "617-555-1903",
-        "placeholder": true
+        "email": "makenziekent@fas.harvard.edu",
+        "phone": "",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/gocrimson.com/images/2020/3/25/kenzie_kent.jpg?width=300",
+        "placeholder": false
+      },
+      {
+        "name": "Sydney Scales",
+        "title": "Assistant Coach",
+        "email": "",
+        "phone": "",
+        "photo": "",
+        "placeholder": false
+      },
+      {
+        "name": "Beth Doran",
+        "title": "Director of Operations",
+        "email": "bethdoran@fas.harvard.edu",
+        "phone": "",
+        "photo": "",
+        "placeholder": false
+      },
+      {
+        "name": "Megan Finn",
+        "title": "Athletic Trainer",
+        "email": "mfinn@fas.harvard.edu",
+        "phone": "617-495-2200",
+        "photo": "",
+        "placeholder": false
       }
     ],
     "roster": [
@@ -4947,25 +5062,44 @@ export const ROSTER_DATA = {
   "cornell": {
     "coachingStaff": [
       {
-        "name": "Vanessa Metcalf",
+        "name": "Jenny Graap",
         "title": "Head Coach",
-        "email": "v.metcalf@cornell.edu",
-        "phone": "607-555-2001",
-        "placeholder": true
+        "email": "womenslax@cornell.edu",
+        "phone": "255-4979",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/cornellbigred.com/images/2025/9/5/Graap_Jenny_25_crop.jpg?width=300",
+        "placeholder": false
       },
       {
-        "name": "Tara Hanley",
-        "title": "Associate Head Coach",
-        "email": "t.hanley@cornell.edu",
-        "phone": "607-555-2002",
-        "placeholder": true
-      },
-      {
-        "name": "Brooke Fallon",
+        "name": "Sarah Burlingame",
         "title": "Assistant Coach",
-        "email": "b.fallon@cornell.edu",
-        "phone": "607-555-2003",
-        "placeholder": true
+        "email": "womenslax@cornell.edu",
+        "phone": "561-628-9425",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/cornellbigred.com/images/2023/9/1/Sarah_Burlingame_23_Crop.jpg?width=300",
+        "placeholder": false
+      },
+      {
+        "name": "Riley VanHoltz",
+        "title": "Assistant Coach",
+        "email": "womenslax@cornell.edu",
+        "phone": "",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/cornellbigred.com/images/2024/9/19/Vantloltz_Riley_24_crop.JPG?width=300",
+        "placeholder": false
+      },
+      {
+        "name": "Ashley O'Brien",
+        "title": "Assistant Coach",
+        "email": "womenslax@cornell.edu",
+        "phone": "585-764-3562",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/cornellbigred.com/images/2023/9/1/Ashley_OBrien_23_Crop.jpg?width=300",
+        "placeholder": false
+      },
+      {
+        "name": "Rachel Rosenberg",
+        "title": "Director of Operations",
+        "email": "rr823@cornell.edu",
+        "phone": "",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/cornellbigred.com/images/2025/1/13/Untitled-3.jpg?width=300",
+        "placeholder": false
       }
     ],
     "roster": [
@@ -5349,8 +5483,6 @@ export const ROSTER_DATA = {
     ]
   },
   "marquette": {
-    "lastUpdated": "2026-06-04T14:29:39.829Z",
-    "source": "https://gomarquette.com/sports/womens-lacrosse/roster",
     "coachingStaff": [
       {
         "name": "Meredith  Black",
@@ -5673,11 +5805,11 @@ export const ROSTER_DATA = {
         "gradYear": 2029,
         "jersey": "45"
       }
-    ]
+    ],
+    "source": "https://gomarquette.com/sports/womens-lacrosse/roster",
+    "lastUpdated": "2026-06-04T14:29:39.829Z"
   },
   "james-madison": {
-    "lastUpdated": "2026-06-04T14:29:45.216Z",
-    "source": "https://jmusports.com/sports/womens-lacrosse/roster",
     "coachingStaff": [
       {
         "name": "Shelley Klaes",
@@ -5958,30 +6090,43 @@ export const ROSTER_DATA = {
         "gradYear": 2029,
         "jersey": "39"
       }
-    ]
+    ],
+    "source": "https://jmusports.com/sports/womens-lacrosse/roster",
+    "lastUpdated": "2026-06-04T14:29:45.216Z"
   },
   "stony-brook": {
     "coachingStaff": [
       {
         "name": "Joe Spallina",
         "title": "Head Coach",
-        "email": "j.spallina@stonybrook.edu",
-        "phone": "631-555-2401",
-        "placeholder": true
+        "email": "joseph.spallina@stonybrook.edu",
+        "phone": "631-632-4089",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/stonybrook.sidearmsports.com/images/2016/9/14/Joe_Spallina.jpg?width=300",
+        "placeholder": false
       },
       {
-        "name": "Nicole Wiesner",
-        "title": "Associate Head Coach",
-        "email": "n.wiesner@stonybrook.edu",
-        "phone": "631-555-2402",
-        "placeholder": true
+        "name": "Sydney Pirreca",
+        "title": "Associate Head Coach / Offensive Coordinator",
+        "email": "Sydney.Pirreca@stonybrook.edu",
+        "phone": "",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/stonybrook.sidearmsports.com/images/2024/12/3/Sydney_Perreca_1_.jpg?width=300",
+        "placeholder": false
       },
       {
-        "name": "Cassidy Kelley",
+        "name": "Clare Levy",
+        "title": "Defensive Coordinator",
+        "email": "clare.levy@stonybrook.edu",
+        "phone": "",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/stonybrook.sidearmsports.com/images/2024/12/5/Clare_Levy_3_.jpg?width=300",
+        "placeholder": false
+      },
+      {
+        "name": "Charlotte Verhulst",
         "title": "Assistant Coach",
-        "email": "c.kelley@stonybrook.edu",
-        "phone": "631-555-2403",
-        "placeholder": true
+        "email": "charlotte.verhulst@stonybrook.edu",
+        "phone": "",
+        "photo": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/stonybrook.sidearmsports.com/images/2024/12/9/Charlotte_Verhulst_2_.jpg?width=300",
+        "placeholder": false
       }
     ],
     "roster": [
@@ -6163,8 +6308,6 @@ export const ROSTER_DATA = {
     ]
   },
   "army": {
-    "lastUpdated": "2026-06-04T14:29:54.825Z",
-    "source": "https://goarmywestpoint.com/sports/womens-lacrosse/roster",
     "coachingStaff": [
       {
         "name": "Michelle Tumolo",
@@ -6389,7 +6532,9 @@ export const ROSTER_DATA = {
         "gradYear": 2028,
         "jersey": "44"
       }
-    ]
+    ],
+    "source": "https://goarmywestpoint.com/sports/womens-lacrosse/roster",
+    "lastUpdated": "2026-06-04T14:29:54.825Z"
   }
 };
 
