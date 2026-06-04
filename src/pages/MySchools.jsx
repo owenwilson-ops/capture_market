@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext'
 import { useProfile } from '../hooks/useProfile'
 import { SCHOOLS } from '../data/schools'
 import { ROSTER_DATA, getPositionNeed } from '../data/rosterData'
+import { getTeamLeaders, filmSearchUrl, STATS_SEASON } from '../data/statsLeaders'
 import { supabase } from '../lib/supabase'
 import { IconPlus, IconX, IconSearch, IconCheck } from '../components/Icons'
 
@@ -204,7 +205,7 @@ export default function MySchools() {
 
             {/* Tabs */}
             <div style={{ display: 'flex', gap: '4px', marginBottom: '20px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '4px' }}>
-              {[['staff', 'Coaching Staff'], ['roster', 'Roster Depth']].map(([key, label]) => (
+              {[['staff', 'Coaching Staff'], ['roster', 'Roster Depth'], ['leaders', 'Stat Leaders']].map(([key, label]) => (
                 <button
                   key={key}
                   onClick={() => setTab(key)}
@@ -303,6 +304,9 @@ export default function MySchools() {
 
             {/* Roster Depth */}
             {tab === 'roster' && <RosterDepth rosterData={rosterData} school={school} profile={profile} />}
+
+            {/* Stat Leaders */}
+            {tab === 'leaders' && <StatLeaders schoolId={activeId} rosterData={rosterData} school={school} />}
           </div>
         ) : (
           <div style={{ textAlign: 'center', padding: '60px 20px' }}>
@@ -394,6 +398,99 @@ function RosterDepth({ rosterData, school, profile }) {
       <p style={{ fontSize: '11px', color: 'rgba(240,234,248,0.25)', textAlign: 'center', lineHeight: 1.6 }}>
         Roster data is updated periodically. Always verify directly with the coaching staff.
       </p>
+    </div>
+  )
+}
+
+function FilmLink({ name, schoolName, color }) {
+  return (
+    <a
+      href={filmSearchUrl(name, schoolName)}
+      target="_blank"
+      rel="noreferrer"
+      style={{
+        fontSize: '11px', fontWeight: 600, color, textDecoration: 'none',
+        border: `1px solid color-mix(in srgb, ${color} 35%, transparent)`,
+        background: `color-mix(in srgb, ${color} 12%, transparent)`,
+        padding: '5px 10px', borderRadius: '8px', whiteSpace: 'nowrap', flexShrink: 0,
+      }}
+    >
+      Watch film
+    </a>
+  )
+}
+
+function StatLeaders({ schoolId, rosterData, school }) {
+  const leaders = getTeamLeaders(schoolId)
+
+  if (leaders.length > 0) {
+    return (
+      <div>
+        <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '12px' }}>
+          <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '18px', letterSpacing: '1.5px', color: '#F0EAFB' }}>
+            Scoring Leaders
+          </span>
+          {STATS_SEASON && (
+            <span style={{ fontFamily: "'Space Mono', monospace", fontSize: '9px', letterSpacing: '1px', color: 'rgba(240,234,248,0.3)' }}>
+              {STATS_SEASON} SEASON
+            </span>
+          )}
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          {leaders.map((p, i) => (
+            <div key={`${p.name}-${i}`} style={{ background: 'linear-gradient(145deg, #181424, #120f1c)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', padding: '14px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '22px', color: school.primaryColor, width: '24px', textAlign: 'center', flexShrink: 0 }}>{i + 1}</span>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontWeight: 600, fontSize: '14px', color: '#F0EAFB', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.name}</div>
+                <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '10px', letterSpacing: '0.5px', color: 'rgba(240,234,248,0.45)', marginTop: '3px' }}>
+                  {[p.position, `${p.points} PTS`, `${p.goals}G`, `${p.assists}A`].filter(Boolean).join('  ·  ')}
+                </div>
+              </div>
+              <FilmLink name={p.name} schoolName={school.name} color={school.primaryColor} />
+            </div>
+          ))}
+        </div>
+        <p style={{ fontSize: '11px', color: 'rgba(240,234,248,0.25)', textAlign: 'center', lineHeight: 1.6, marginTop: '16px' }}>
+          Stat leaders via Inside Lacrosse. Film links open a YouTube search for each athlete.
+        </p>
+      </div>
+    )
+  }
+
+  // No season stats loaded yet — fall back to the current roster so recruits can
+  // still pull up film on the upperclassmen they would be competing with.
+  const watchable = rosterData.roster
+    .filter(p => p.name && (p.year === 'JR' || p.year === 'SR'))
+    .slice(0, 12)
+
+  return (
+    <div>
+      <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '14px', marginBottom: '14px' }}>
+        <p style={{ fontSize: '12px', color: 'rgba(240,234,248,0.5)', lineHeight: 1.6 }}>
+          Live scoring leaders are not loaded yet. Add a parse.bot API key and run
+          <span style={{ fontFamily: "'Space Mono', monospace", color: 'rgba(240,234,248,0.7)' }}> npm run fetch-stats </span>
+          to rank players by scoring. Until then, here is the current roster so you can watch film.
+        </p>
+      </div>
+      {watchable.length > 0 ? (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          {watchable.map((p, i) => (
+            <div key={`${p.name}-${i}`} style={{ background: 'linear-gradient(145deg, #181424, #120f1c)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', padding: '12px 14px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontWeight: 600, fontSize: '14px', color: '#F0EAFB' }}>{p.name}</div>
+                <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '10px', letterSpacing: '0.5px', color: 'rgba(240,234,248,0.45)', marginTop: '3px' }}>
+                  {[p.position, p.year].filter(Boolean).join('  ·  ')}
+                </div>
+              </div>
+              <FilmLink name={p.name} schoolName={school.name} color={school.primaryColor} />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p style={{ fontSize: '12px', color: 'rgba(240,234,248,0.35)', textAlign: 'center', padding: '20px' }}>
+          No roster data available for this program yet.
+        </p>
+      )}
     </div>
   )
 }

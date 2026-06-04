@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
+
+# Intermediate scrape cache (regenerate with `npm run scrape-athletics`)
+scripts/output
 .env
 .env.*
 !.env.example
