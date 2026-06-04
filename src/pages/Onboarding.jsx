@@ -309,7 +309,7 @@ function SchoolCard({ school, onSelect }) {
 
   function handleClick() {
     setSelected(true)
-    setTimeout(onSelect, 200)
+    setTimeout(onSelect, 220)
   }
 
   return (
@@ -318,34 +318,50 @@ function SchoolCard({ school, onSelect }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        background: '#13101A',
-        border: `1px solid ${hovered || selected ? school.primaryColor : 'rgba(255,255,255,0.07)'}`,
-        borderLeft: `3px solid ${school.primaryColor}`,
-        borderRadius: '10px',
-        padding: '16px 14px',
+        background: hovered || selected
+          ? `linear-gradient(135deg, color-mix(in srgb, ${school.primaryColor} 15%, #181424), #181424)`
+          : 'linear-gradient(145deg, #181424, #120f1c)',
+        border: `1px solid ${hovered || selected ? `color-mix(in srgb, ${school.primaryColor} 50%, transparent)` : 'rgba(255,255,255,0.07)'}`,
+        borderTop: `2px solid ${hovered || selected ? school.primaryColor : 'rgba(255,255,255,0.07)'}`,
+        borderRadius: '12px',
+        padding: '14px 12px',
         textAlign: 'left',
         cursor: 'pointer',
         transition: 'all 200ms ease',
-        transform: hovered ? 'translateY(-2px)' : 'none',
-        outline: 'none'
+        transform: hovered ? 'translateY(-3px)' : selected ? 'scale(0.97)' : 'none',
+        outline: 'none',
+        boxShadow: hovered ? `0 8px 24px rgba(0,0,0,0.4), 0 0 20px color-mix(in srgb, ${school.primaryColor} 15%, transparent)` : 'none'
       }}
     >
       <div style={{
         fontFamily: "'Bebas Neue', sans-serif",
         fontSize: '18px',
         letterSpacing: '1.5px',
-        color: '#F0EAFB',
-        lineHeight: 1.1
+        color: hovered ? '#FFFFFF' : '#F0EAFB',
+        lineHeight: 1.1,
+        marginBottom: '4px'
       }}>
         {school.shortName}
       </div>
+      {school.mascot && (
+        <div style={{
+          fontFamily: "'Space Mono', monospace",
+          fontSize: '7px',
+          letterSpacing: '1px',
+          textTransform: 'uppercase',
+          color: hovered ? school.primaryColor : 'rgba(240,234,248,0.3)',
+          transition: 'color 200ms ease'
+        }}>
+          {school.mascot}
+        </div>
+      )}
       <div style={{
         fontFamily: "'Space Mono', monospace",
-        fontSize: '8px',
-        letterSpacing: '1.5px',
+        fontSize: '7px',
+        letterSpacing: '1px',
         textTransform: 'uppercase',
-        color: 'rgba(240,234,248,0.35)',
-        marginTop: '4px'
+        color: 'rgba(240,234,248,0.22)',
+        marginTop: '2px'
       }}>
         {school.conference}
       </div>
