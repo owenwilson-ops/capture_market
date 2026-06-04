@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 /**
- * refreshData.js — Run this monthly to update coaching staff and roster data.
- * Runs the scraper for all schools, then runs the merge.
- * Usage: node scripts/refreshData.js
+ * refreshData.js — refresh coaching staff and roster data for all schools.
+ * Scrapes each school's official athletics site, then regenerates rosterData.js.
+ * Usage: node scripts/refreshData.js   (or: npm run refresh-data)
+ *
+ * To also refresh stat leaders, set PARSE_API_KEY and run `npm run fetch-stats`.
  */
 
 import { execSync } from 'child_process'
@@ -20,8 +22,8 @@ console.log('=== Recruit Ready Data Refresh ===')
 console.log(`Started: ${new Date().toISOString()}`)
 
 try {
-  run('node scripts/scrapeInsideLacrosse.js --all')
-  run('node scripts/mergeToApp.js')
+  run('node scripts/scrapeAthletics.js --all')
+  run('node scripts/buildRosterData.js')
   console.log(`\nCompleted: ${new Date().toISOString()}`)
 } catch (err) {
   console.error('\nRefresh failed:', err.message)
