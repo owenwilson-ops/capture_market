@@ -3,6 +3,15 @@ import { useAuth } from '../context/AuthContext'
 import { useProfile } from '../hooks/useProfile'
 import { supabase } from '../lib/supabase'
 import { IconChevronDown } from '../components/Icons'
+import { SCHOOLS } from '../data/schools'
+import { getOverallFit } from '../lib/fit'
+
+const PARENT_TIER_META = {
+  likely: { label: 'Likely', color: '#4ADE80' },
+  target: { label: 'Target', color: '#FBBF24' },
+  reach:  { label: 'Reach',  color: '#FB7185' },
+}
+const PARENT_NEED_LABEL = { high: 'Strong roster opening', medium: 'Some roster need', low: 'Limited roster need' }
 
 const LIFE_LESSONS = [
   {
@@ -206,6 +215,79 @@ export default function ParentHome() {
           Read-only view. Progress is logged by the athlete.
         </p>
       </div>
+
+      {/* School Fit Read */}
+      <SchoolFitRead profile={profile} />
+    </div>
+  )
+}
+
+function SchoolFitRead({ profile }) {
+  const ids = profile?.mySchools || []
+  if (ids.length === 0) return null
+
+  const hasScores = profile?.satScore != null || profile?.actScore != null
+  const rows = ids
+    .map(id => ({ school: SCHOOLS.find(s => s.id === id), fit: getOverallFit(id, profile || {}) }))
+    .filter(r => r.school)
+
+  return (
+    <div style={{ marginTop: '40px' }}>
+      <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '30px', letterSpacing: '2px', color: '#F0EAFB', marginBottom: '6px' }}>
+        School Fit Read
+      </h2>
+      <p style={{ color: 'rgba(240,234,248,0.5)', fontSize: '13px', marginBottom: '16px', lineHeight: 1.6 }}>
+        An honest, data-backed read on each target school — academic admissibility and roster opportunity at {profile?.name ? `${profile.name}'s` : 'her'} position.
+      </p>
+
+      <div className="flex flex-col gap-3">
+        {rows.map(({ school, fit }) => {
+          const tier = PARENT_TIER_META[fit.tier] || PARENT_TIER_META.target
+          const need = fit.roster.need
+          return (
+            <div key={school.id} style={{
+              background: '#13101A',
+              border: '1px solid rgba(255,255,255,0.07)',
+              borderLeft: `3px solid ${school.primaryColor}`,
+              borderRadius: '12px', padding: '16px 18px'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px', marginBottom: '8px' }}>
+                <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '20px', letterSpacing: '1px', color: '#F0EAFB' }}>
+                  {school.shortName}
+                </span>
+                <span style={{
+                  fontFamily: "'Space Mono', monospace", fontSize: '10px', letterSpacing: '1px', textTransform: 'uppercase',
+                  color: tier.color, background: `color-mix(in srgb, ${tier.color} 14%, transparent)`,
+                  border: `1px solid color-mix(in srgb, ${tier.color} 35%, transparent)`,
+                  padding: '4px 10px', borderRadius: '6px'
+                }}>
+                  {tier.label}
+                </span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', fontSize: '12px', color: 'rgba(240,234,248,0.55)' }}>
+                {fit.academic.acceptanceRate != null && (
+                  <span>{Math.round(fit.academic.acceptanceRate * 100)}% acceptance</span>
+                )}
+                {fit.roster.hasData && profile?.position && (
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: PARENT_TIER_META[need === 'high' ? 'likely' : need === 'medium' ? 'target' : 'reach'].color }} />
+                    {PARENT_NEED_LABEL[need]}
+                  </span>
+                )}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      {!hasScores && (
+        <p style={{ fontSize: '12px', color: 'rgba(240,234,248,0.4)', lineHeight: 1.6, marginTop: '12px' }}>
+          Academic reads are based on school selectivity only. Add SAT or ACT scores in the athlete's profile for a personalized academic fit.
+        </p>
+      )}
+      <p style={{ fontSize: '11px', color: 'rgba(240,234,248,0.25)', lineHeight: 1.6, marginTop: '12px' }}>
+        Estimates from public roster and U.S. Dept. of Education College Scorecard data. A guide for conversation, not a guarantee — confirm with coaches and admissions.
+      </p>
     </div>
   )
 }

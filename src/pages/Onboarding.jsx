@@ -44,6 +44,9 @@ export default function Onboarding() {
   const [position, setPosition] = useState(null)
   const [grade, setGrade] = useState(null)
   const [name, setName] = useState('')
+  const [gpa, setGpa] = useState('')
+  const [sat, setSat] = useState('')
+  const [act, setAct] = useState('')
   const [saving, setSaving] = useState(false)
   const { user } = useAuth()
   const { updateProfile } = useProfile(user?.id)
@@ -54,12 +57,16 @@ export default function Onboarding() {
   async function finish() {
     setSaving(true)
     const gradYear = calcGradYear(grade)
+    const num = v => { const n = parseFloat(v); return Number.isFinite(n) ? n : null }
     await updateProfile({
       name: name.trim(),
       dreamSchoolId,
       position,
       grade,
       gradYear,
+      gpa: num(gpa),
+      satScore: num(sat),
+      actScore: num(act),
       mySchools: dreamSchoolId && dreamSchoolId !== 'undecided' ? [dreamSchoolId] : [],
       parentMode: false
     })
@@ -81,7 +88,7 @@ export default function Onboarding() {
             </button>
           )}
           <div className="flex-1">
-            <ProgressBar step={step} total={5} />
+            <ProgressBar step={step} total={6} />
           </div>
         </div>
       </div>
@@ -234,8 +241,43 @@ export default function Onboarding() {
             </div>
           )}
 
-          {/* Step 5 — Confirmation */}
+          {/* Step 5 — Academics (optional) */}
           {step === 5 && (
+            <div>
+              <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '52px', letterSpacing: '2px', color: '#F0EAFB', lineHeight: 1, marginBottom: '8px' }}>
+                Your academics
+              </h1>
+              <p style={{ color: 'rgba(240,234,248,0.55)', fontSize: '15px', marginBottom: '8px' }}>
+                Optional. We use these to show whether each school is an academic reach, target, or likely fit.
+              </p>
+              <p style={{ color: 'rgba(240,234,248,0.35)', fontSize: '13px', marginBottom: '28px' }}>
+                You can add or change these any time in your profile.
+              </p>
+
+              <div className="flex flex-col gap-4" style={{ marginBottom: '28px' }}>
+                <AcademicField label="GPA (unweighted)" value={gpa} onChange={setGpa} placeholder="3.7" inputMode="decimal" />
+                <AcademicField label="SAT (total)" value={sat} onChange={setSat} placeholder="1300" inputMode="numeric" />
+                <AcademicField label="ACT (composite)" value={act} onChange={setAct} placeholder="29" inputMode="numeric" />
+              </div>
+
+              <button
+                onClick={() => setStep(6)}
+                className="btn btn-primary w-full"
+                style={{ background: 'var(--color-primary)', color: 'var(--color-text-on-primary, #fff)', marginBottom: '12px' }}
+              >
+                Continue
+              </button>
+              <button
+                onClick={() => { setGpa(''); setSat(''); setAct(''); setStep(6) }}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(240,234,248,0.45)', fontSize: '14px', width: '100%', padding: '8px' }}
+              >
+                Skip for now
+              </button>
+            </div>
+          )}
+
+          {/* Step 6 — Confirmation */}
+          {step === 6 && (
             <div className="flex-1 flex flex-col justify-between">
               <div>
                 <div style={{
@@ -277,6 +319,9 @@ export default function Onboarding() {
                     <SummaryRow label="Position" value={position} />
                     <SummaryRow label="Grade" value={grade} />
                     <SummaryRow label="Graduation" value={`Class of ${calcGradYear(grade)}`} />
+                    {gpa && <SummaryRow label="GPA" value={gpa} />}
+                    {sat && <SummaryRow label="SAT" value={sat} />}
+                    {act && <SummaryRow label="ACT" value={act} />}
                   </div>
                 </div>
               </div>
@@ -396,6 +441,30 @@ function UndecidedCard({ onSelect }) {
         Train toward the standard. Choose your school when you're ready.
       </div>
     </button>
+  )
+}
+
+function AcademicField({ label, value, onChange, placeholder, inputMode }) {
+  return (
+    <div>
+      <label style={{ display: 'block', fontFamily: "'Space Mono', monospace", fontSize: '10px', letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(240,234,248,0.4)', marginBottom: '8px' }}>
+        {label}
+      </label>
+      <input
+        type="text"
+        inputMode={inputMode}
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        placeholder={placeholder}
+        style={{
+          width: '100%', background: '#1A1525', border: '1px solid rgba(255,255,255,0.1)',
+          borderRadius: '10px', padding: '14px 16px', color: '#F0EAFB', fontSize: '18px',
+          fontFamily: "'DM Sans', sans-serif", outline: 'none'
+        }}
+        onFocus={e => e.target.style.borderColor = 'var(--color-primary)'}
+        onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
+      />
+    </div>
   )
 }
 

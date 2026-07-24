@@ -4,10 +4,22 @@ import { useProfile } from '../hooks/useProfile'
 import { SCHOOLS } from '../data/schools'
 import { ROSTER_DATA, getPositionNeed } from '../data/rosterData'
 import { getTeamLeaders, filmSearchUrl, STATS_SEASON } from '../data/statsLeaders'
+import { getOverallFit } from '../lib/fit'
 import { supabase } from '../lib/supabase'
 import { IconPlus, IconX, IconSearch, IconCheck } from '../components/Icons'
 
 const CLASS_COLORS = { SR: 1.0, JR: 0.7, SO: 0.45, FR: 0.25 }
+
+const TIER_META = {
+  likely: { label: 'Likely', color: '#4ADE80', blurb: "Your profile is at or above this program's typical academic range." },
+  target: { label: 'Target', color: '#FBBF24', blurb: "You're squarely in this program's typical academic range." },
+  reach:  { label: 'Reach',  color: '#FB7185', blurb: 'This program sits above your current academic range — a stretch goal.' },
+}
+const NEED_META = {
+  high:   { label: 'Strong opening', color: '#4ADE80' },
+  medium: { label: 'Some need', color: '#FBBF24' },
+  low:    { label: 'Limited need', color: 'rgba(240,234,248,0.5)' },
+}
 
 function CoachPhoto({ src, name, size = 52 }) {
   const [errored, setErrored] = useState(false)
@@ -50,7 +62,7 @@ export default function MySchools() {
   const { user } = useAuth()
   const { profile, updateProfile } = useProfile(user?.id)
   const [selectedId, setSelectedId] = useState(null)
-  const [tab, setTab] = useState('staff')
+  const [tab, setTab] = useState('fit')
   const [showAddModal, setShowAddModal] = useState(false)
   const [showContactModal, setShowContactModal] = useState(false)
   const [contactLogs, setContactLogs] = useState([])
@@ -205,15 +217,15 @@ export default function MySchools() {
 
             {/* Tabs */}
             <div style={{ display: 'flex', gap: '4px', marginBottom: '20px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '4px' }}>
-              {[['staff', 'Coaching Staff'], ['roster', 'Roster Depth'], ['leaders', 'Stat Leaders']].map(([key, label]) => (
+              {[['fit', 'Your Fit'], ['staff', 'Staff'], ['roster', 'Roster'], ['leaders', 'Leaders']].map(([key, label]) => (
                 <button
                   key={key}
                   onClick={() => setTab(key)}
                   style={{
-                    flex: 1, padding: '11px', borderRadius: '9px',
+                    flex: 1, padding: '11px 6px', borderRadius: '9px',
                     background: tab === key ? 'var(--color-primary)' : 'transparent',
                     color: tab === key ? 'var(--color-text-on-primary, #fff)' : 'rgba(240,234,248,0.4)',
-                    border: 'none', cursor: 'pointer', fontWeight: 600, fontSize: '14px',
+                    border: 'none', cursor: 'pointer', fontWeight: 600, fontSize: '13px',
                     transition: 'all 200ms ease',
                     boxShadow: tab === key ? `0 4px 16px color-mix(in srgb, var(--color-primary) 35%, transparent)` : 'none',
                     position: 'relative'
@@ -226,6 +238,9 @@ export default function MySchools() {
                 </button>
               ))}
             </div>
+
+            {/* Your Fit */}
+            {tab === 'fit' && <FitTab schoolId={activeId} school={school} profile={profile} />}
 
             {/* Coaching Staff */}
             {tab === 'staff' && (
@@ -398,6 +413,122 @@ function RosterDepth({ rosterData, school, profile }) {
       <p style={{ fontSize: '11px', color: 'rgba(240,234,248,0.25)', textAlign: 'center', lineHeight: 1.6 }}>
         Roster data is updated periodically. Always verify directly with the coaching staff.
       </p>
+    </div>
+  )
+}
+
+function FitTab({ schoolId, school, profile }) {
+  const fit = getOverallFit(schoolId, profile || {})
+  const tier = TIER_META[fit.tier] || TIER_META.target
+  const need = NEED_META[fit.roster.need] || NEED_META.medium
+  const { academic, roster } = fit
+  const userGradYear = profile?.gradYear
+  const pct = academic.acceptanceRate != null ? Math.round(academic.acceptanceRate * 100) : null
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+
+      {/* Overall verdict */}
+      <div style={{
+        background: `linear-gradient(135deg, color-mix(in srgb, ${tier.color} 14%, #181424), #13101A)`,
+        border: `1px solid color-mix(in srgb, ${tier.color} 35%, transparent)`,
+        borderRadius: '16px', padding: '20px'
+      }}>
+        <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '9px', letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(240,234,248,0.4)', marginBottom: '6px' }}>
+          Overall Read{profile?.position ? ` · ${profile.position}` : ''}
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '44px', letterSpacing: '2px', color: tier.color, lineHeight: 1 }}>
+            {tier.label}
+          </span>
+          <span style={{ fontSize: '12px', color: 'rgba(240,234,248,0.55)', lineHeight: 1.5, flex: 1 }}>
+            {tier.blurb}
+          </span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '14px', paddingTop: '14px', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: need.color, flexShrink: 0 }} />
+          <span style={{ fontSize: '13px', color: 'rgba(240,234,248,0.7)' }}>
+            <strong style={{ color: need.color }}>{need.label}</strong> at {profile?.position || 'your position'} for the class of {userGradYear || '—'}.
+          </span>
+        </div>
+      </div>
+
+      {/* Academic detail */}
+      <div style={{ background: 'linear-gradient(145deg, #181424, #120f1c)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '14px', padding: '18px' }}>
+        <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '18px', letterSpacing: '1.5px', color: '#F0EAFB', marginBottom: '12px' }}>
+          Academic Fit
+        </div>
+        {academic.hasData ? (
+          <>
+            <div style={{ display: 'flex', gap: '20px', marginBottom: '12px', flexWrap: 'wrap' }}>
+              {pct != null && <FitStat label="Acceptance" value={`${pct}%`} />}
+              {academic.satLow != null && <FitStat label="SAT (mid 50%)" value={`${academic.satLow}–${academic.satHigh}`} />}
+              {academic.actLow != null && <FitStat label="ACT (mid 50%)" value={`${academic.actLow}–${academic.actHigh}`} />}
+            </div>
+            {academic.hasScores ? (
+              <div style={{ display: 'flex', gap: '14px', marginBottom: '12px', flexWrap: 'wrap' }}>
+                {profile?.satScore != null && <FitStat label="Your SAT" value={String(profile.satScore)} accent={tier.color} />}
+                {profile?.actScore != null && <FitStat label="Your ACT" value={String(profile.actScore)} accent={tier.color} />}
+                {profile?.gpa != null && <FitStat label="Your GPA" value={String(profile.gpa)} accent={tier.color} />}
+              </div>
+            ) : null}
+            <p style={{ fontSize: '12px', color: 'rgba(240,234,248,0.5)', lineHeight: 1.6 }}>
+              {academic.detail}
+            </p>
+          </>
+        ) : (
+          <p style={{ fontSize: '12px', color: 'rgba(240,234,248,0.45)', lineHeight: 1.6 }}>
+            No admissions data on file for this school yet.
+          </p>
+        )}
+      </div>
+
+      {/* Athletic detail */}
+      <div style={{ background: 'linear-gradient(145deg, #181424, #120f1c)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '14px', padding: '18px' }}>
+        <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '18px', letterSpacing: '1.5px', color: '#F0EAFB', marginBottom: '12px' }}>
+          Roster Fit{profile?.position ? ` · ${profile.position}` : ''}
+        </div>
+        {roster.hasData && profile?.position ? (
+          <>
+            <div style={{ display: 'flex', gap: '20px', marginBottom: '14px', flexWrap: 'wrap' }}>
+              <FitStat label="On roster now" value={String(roster.atPosition)} />
+              <FitStat label="Graduate before you arrive" value={String(roster.graduatingBefore)} accent={need.color} />
+              <FitStat label="Still rostered" value={String(roster.stayingThrough)} />
+            </div>
+            <div style={{ display: 'flex', gap: '12px' }}>
+              {['SR', 'JR', 'SO', 'FR'].map(year => (
+                <div key={year} style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                  <div style={{ width: '8px', height: '8px', borderRadius: '2px', background: school.primaryColor, opacity: CLASS_COLORS[year] }} />
+                  <span style={{ fontFamily: "'Space Mono', monospace", fontSize: '9px', color: 'rgba(240,234,248,0.4)', letterSpacing: '1px' }}>
+                    {year} {roster.depthByClass[year]}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </>
+        ) : (
+          <p style={{ fontSize: '12px', color: 'rgba(240,234,248,0.45)', lineHeight: 1.6 }}>
+            {profile?.position ? 'No roster data on file for this school yet.' : 'Set your position in your profile to see roster fit.'}
+          </p>
+        )}
+      </div>
+
+      <p style={{ fontSize: '11px', color: 'rgba(240,234,248,0.25)', textAlign: 'center', lineHeight: 1.6 }}>
+        Estimates from public roster and U.S. Dept. of Education College Scorecard data. A guide, not a guarantee — always confirm with the coaching staff and admissions.
+      </p>
+    </div>
+  )
+}
+
+function FitStat({ label, value, accent }) {
+  return (
+    <div>
+      <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '26px', letterSpacing: '1px', color: accent || '#F0EAFB', lineHeight: 1 }}>
+        {value}
+      </div>
+      <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '8px', letterSpacing: '1px', textTransform: 'uppercase', color: 'rgba(240,234,248,0.4)', marginTop: '4px', maxWidth: '92px', lineHeight: 1.3 }}>
+        {label}
+      </div>
     </div>
   )
 }

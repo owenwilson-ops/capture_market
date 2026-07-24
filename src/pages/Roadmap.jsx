@@ -5,6 +5,14 @@ import { ROADMAP_DATA } from '../data/roadmapData'
 import { supabase } from '../lib/supabase'
 import { IconCheck, IconChevronDown } from '../components/Icons'
 import { SCHOOLS } from '../data/schools'
+import { getNextWindow, getCurrentPeriod, CALENDAR_SEASON } from '../data/recruitingCalendar'
+
+const PERIOD_COLORS = {
+  contact: '#4ADE80',
+  quiet: '#FBBF24',
+  dead: '#FB7185',
+  shutdown: '#FB7185',
+}
 
 function daysUntilGrad(gradYear) {
   if (!gradYear) return null
@@ -22,6 +30,8 @@ export default function Roadmap() {
 
   const currentGrade = profile?.grade || '10th'
   const days = daysUntilGrad(profile?.gradYear)
+  const nextWindow = getNextWindow(profile?.gradYear)
+  const currentPeriod = getCurrentPeriod()
 
   const gradeOrder = ['8th', '9th', '10th', '11th', '12th']
   const currentGradeIndex = gradeOrder.indexOf(currentGrade)
@@ -93,6 +103,48 @@ export default function Roadmap() {
               Class of {profile?.gradYear}. Every day compounds.
             </p>
           </div>
+        </div>
+      )}
+
+      {/* Next recruiting window */}
+      {nextWindow && (nextWindow.kind === 'contactOpens' || nextWindow.kind === 'period') && (
+        <div style={{
+          background: nextWindow.kind === 'contactOpens'
+            ? 'color-mix(in srgb, var(--color-primary) 10%, #13101A)'
+            : '#13101A',
+          border: `1px solid ${nextWindow.kind === 'contactOpens' ? 'color-mix(in srgb, var(--color-primary) 35%, transparent)' : 'rgba(255,255,255,0.07)'}`,
+          borderRadius: '12px', padding: '18px', marginBottom: '28px'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '10px', marginBottom: '8px' }}>
+            <span style={{ fontFamily: "'Space Mono', monospace", fontSize: '9px', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--color-primary)' }}>
+              {nextWindow.kind === 'contactOpens' ? 'Next milestone' : 'Calendar'}
+            </span>
+            <span style={{ fontFamily: "'Space Mono', monospace", fontSize: '9px', letterSpacing: '1px', color: 'rgba(240,234,248,0.3)' }}>
+              {nextWindow.weeks <= 8 ? `IN ${nextWindow.weeks} WK${nextWindow.weeks === 1 ? '' : 'S'}` : nextWindow.date.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
+            </span>
+          </div>
+          <div style={{ fontWeight: 600, fontSize: '16px', color: '#F0EAFB', marginBottom: '6px' }}>
+            {nextWindow.title}
+            {nextWindow.kind === 'contactOpens' && (
+              <span style={{ color: 'var(--color-primary)' }}> · {nextWindow.date.toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+            )}
+          </div>
+          <p style={{ fontSize: '13px', color: 'rgba(240,234,248,0.55)', lineHeight: 1.6 }}>
+            {nextWindow.detail}
+          </p>
+
+          {/* Current period status (only relevant once contact has opened) */}
+          {nextWindow.contactOpen && currentPeriod && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '14px', paddingTop: '14px', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+              <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: PERIOD_COLORS[currentPeriod.type] || 'rgba(255,255,255,0.4)', flexShrink: 0 }} />
+              <span style={{ fontSize: '13px', color: 'rgba(240,234,248,0.65)' }}>
+                Currently a <strong style={{ color: PERIOD_COLORS[currentPeriod.type] }}>{currentPeriod.label}</strong>
+              </span>
+            </div>
+          )}
+          <p style={{ fontFamily: "'Space Mono', monospace", fontSize: '8px', letterSpacing: '1px', color: 'rgba(240,234,248,0.25)', marginTop: '12px', lineHeight: 1.5 }}>
+            NCAA D1 WLAX {CALENDAR_SEASON} · VERIFY CURRENT DATES WITH YOUR COACH OR NCAA.ORG
+          </p>
         </div>
       )}
 

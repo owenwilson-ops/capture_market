@@ -1,4 +1,4 @@
--- Recruit Ready — Supabase Schema
+-- Sirius Recruit — Supabase Schema
 -- Run this in your Supabase SQL editor after creating a new project.
 
 -- profiles
@@ -11,9 +11,20 @@ create table public.profiles (
   "gradYear" int,
   "mySchools" text[] default '{}',
   "parentMode" boolean default false,
+  -- Academic profile (optional). Used for academic reach/target/likely fit
+  -- against each school's College Scorecard SAT/ACT ranges. GPA is stored for
+  -- the player's reference; Scorecard publishes no GPA range to compare to.
+  gpa numeric,
+  "satScore" int,
+  "actScore" int,
   "createdAt" timestamp with time zone default now(),
   "updatedAt" timestamp with time zone default now()
 );
+
+-- Migration for existing projects: add academic columns if missing.
+alter table public.profiles add column if not exists gpa numeric;
+alter table public.profiles add column if not exists "satScore" int;
+alter table public.profiles add column if not exists "actScore" int;
 
 -- streaks
 create table public.streaks (
@@ -62,6 +73,8 @@ create table public."roadmapProgress" (
   "completedAt" timestamp with time zone default now(),
   unique("userId", "milestoneId")
 );
+
+-- Note: calendar events are stored on-device (AsyncStorage), not here.
 
 -- Row Level Security
 alter table public.profiles enable row level security;

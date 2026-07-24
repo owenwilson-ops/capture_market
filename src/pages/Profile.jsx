@@ -12,6 +12,7 @@ export default function Profile() {
   const navigate = useNavigate()
   const [editing, setEditing] = useState(null)
   const [name, setName] = useState('')
+  const [acad, setAcad] = useState({ gpa: '', sat: '', act: '' })
   const [showSchoolPicker, setShowSchoolPicker] = useState(false)
   const [showResetConfirm, setShowResetConfirm] = useState(false)
   const [saving, setSaving] = useState(false)
@@ -33,6 +34,23 @@ export default function Profile() {
 
   async function setGrade(g) {
     await updateProfile({ grade: g })
+    setEditing(null)
+  }
+
+  function openAcademics() {
+    setAcad({
+      gpa: profile?.gpa != null ? String(profile.gpa) : '',
+      sat: profile?.satScore != null ? String(profile.satScore) : '',
+      act: profile?.actScore != null ? String(profile.actScore) : '',
+    })
+    setEditing('academics')
+  }
+
+  async function saveAcademics() {
+    setSaving(true)
+    const num = v => { const n = parseFloat(v); return Number.isFinite(n) ? n : null }
+    await updateProfile({ gpa: num(acad.gpa), satScore: num(acad.sat), actScore: num(acad.act) })
+    setSaving(false)
     setEditing(null)
   }
 
@@ -93,6 +111,17 @@ export default function Profile() {
           onEdit={() => setEditing('grade')}
         />
       </div>
+
+      {/* Academics */}
+      <SectionLabel>Academics</SectionLabel>
+      <div style={{ background: '#13101A', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '12px', overflow: 'hidden', marginBottom: '8px' }}>
+        <ProfileRow label="GPA" value={profile?.gpa != null ? String(profile.gpa) : null} onEdit={openAcademics} />
+        <ProfileRow label="SAT" value={profile?.satScore != null ? String(profile.satScore) : null} onEdit={openAcademics} />
+        <ProfileRow label="ACT" value={profile?.actScore != null ? String(profile.actScore) : null} last onEdit={openAcademics} />
+      </div>
+      <p style={{ fontSize: '11px', color: 'rgba(240,234,248,0.3)', lineHeight: 1.6, marginBottom: '20px', padding: '0 4px' }}>
+        Used to show whether each school is an academic reach, target, or likely fit. Stored privately on your profile.
+      </p>
 
       {/* Account */}
       <SectionLabel>Account</SectionLabel>
@@ -211,6 +240,35 @@ export default function Profile() {
               }}>{g}</button>
             ))}
           </div>
+        </Modal>
+      )}
+
+      {editing === 'academics' && (
+        <Modal onClose={() => setEditing(null)} title="Edit Academics">
+          <div className="flex flex-col gap-4" style={{ marginBottom: '16px' }}>
+            {[
+              { key: 'gpa', label: 'GPA (unweighted)', placeholder: '3.7', mode: 'decimal' },
+              { key: 'sat', label: 'SAT (total)', placeholder: '1300', mode: 'numeric' },
+              { key: 'act', label: 'ACT (composite)', placeholder: '29', mode: 'numeric' },
+            ].map(f => (
+              <div key={f.key}>
+                <label style={{ display: 'block', fontFamily: "'Space Mono', monospace", fontSize: '9px', letterSpacing: '1.5px', textTransform: 'uppercase', color: 'rgba(240,234,248,0.4)', marginBottom: '6px' }}>
+                  {f.label}
+                </label>
+                <input
+                  type="text"
+                  inputMode={f.mode}
+                  value={acad[f.key]}
+                  onChange={e => setAcad(a => ({ ...a, [f.key]: e.target.value }))}
+                  placeholder={f.placeholder}
+                  style={{ width: '100%', background: '#1A1525', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '7px', padding: '12px 14px', color: '#F0EAFB', fontSize: '16px', outline: 'none' }}
+                />
+              </div>
+            ))}
+          </div>
+          <button onClick={saveAcademics} disabled={saving} className="btn btn-primary w-full" style={{ background: 'var(--color-primary)', color: 'var(--color-text-on-primary, #fff)' }}>
+            {saving ? 'Saving…' : 'Save'}
+          </button>
         </Modal>
       )}
 

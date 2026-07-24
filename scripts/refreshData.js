@@ -18,7 +18,7 @@ function run(cmd) {
   execSync(cmd, { stdio: 'inherit', cwd: dirname(__dirname) })
 }
 
-console.log('=== Recruit Ready Data Refresh ===')
+console.log('=== Sirius Recruit Data Refresh ===')
 console.log(`Started: ${new Date().toISOString()}`)
 
 try {

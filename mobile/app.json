@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "Sirius Recruit",
+    "slug": "mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "siriusrecruit",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0A0812",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.siriusrecruit.app"
+    },
+    "android": {
+      "package": "com.siriusrecruit.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#0A0812",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "output": "single",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#0A0812",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 120
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": false,
+      "reactCompiler": true
+    }
+  }
+}

@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { TRAINING_PLANS, WEEKLY_PLAN } from '../data/trainingData'
+import { TRAINING_PLANS, plansForPosition, weeklyPlanForPosition } from '../data/trainingData'
+import { useAuth } from '../context/AuthContext'
+import { useProfile } from '../hooks/useProfile'
 import { IconChevronRight } from '../components/Icons'
 
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
@@ -10,6 +12,11 @@ export default function Train() {
   const [selectedDay, setSelectedDay] = useState(Math.max(0, new Date().getDay() - 1))
   const navigate = useNavigate()
   const activeDayIndex = Math.max(0, Math.min(4, new Date().getDay() - 1))
+  const { user } = useAuth()
+  const { profile } = useProfile(user?.id)
+  const position = profile?.position
+  const plans = plansForPosition(position)
+  const weekly = weeklyPlanForPosition(position)
 
   return (
     <div style={{ background: '#0A0812', minHeight: '100vh' }}>
@@ -21,7 +28,7 @@ export default function Train() {
             Training Plans
           </h1>
           <p style={{ color: 'rgba(240,234,248,0.4)', fontSize: '13px', marginTop: '6px' }}>
-            Every session opens with 20 minutes of wall ball. No exceptions.
+            {position ? `Built for your position: ${position}.` : 'Every session opens with 20 minutes of wall ball. No exceptions.'}
           </p>
         </div>
       </div>
@@ -51,7 +58,7 @@ export default function Train() {
         {/* Skill Focus */}
         {tab === 'skill' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {TRAINING_PLANS.map((plan, i) => (
+            {plans.map((plan, i) => (
               <button
                 key={plan.id}
                 onClick={() => navigate(`/train/session/${plan.id}`)}
@@ -114,7 +121,7 @@ export default function Train() {
             </div>
 
             {(() => {
-              const dayEntry = WEEKLY_PLAN.days[selectedDay]
+              const dayEntry = weekly.days[selectedDay]
               const plan = TRAINING_PLANS.find(p => p.id === dayEntry.planId)
               if (!plan) return null
               return (

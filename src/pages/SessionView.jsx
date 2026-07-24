@@ -12,17 +12,18 @@ export default function SessionView() {
   const plan = TRAINING_PLANS.find(p => p.id === planId)
   const [expandedBlock, setExpandedBlock] = useState(null)
   const [sessionStarted, setSessionStarted] = useState(false)
+  const [running, setRunning] = useState(false)
   const [sessionSeconds, setSessionSeconds] = useState(0)
   const timerRef = useRef(null)
 
   useEffect(() => {
-    if (sessionStarted) {
+    if (running) {
       timerRef.current = setInterval(() => setSessionSeconds(s => s + 1), 1000)
     } else {
       clearInterval(timerRef.current)
     }
     return () => clearInterval(timerRef.current)
-  }, [sessionStarted])
+  }, [running])
 
   async function finishSession() {
     if (!user) return
@@ -62,8 +63,15 @@ export default function SessionView() {
         </h1>
         <p style={{ color: 'rgba(240,234,248,0.55)', fontSize: '14px' }}>{plan.focus}</p>
         {sessionStarted && (
-          <div style={{ marginTop: '12px', fontFamily: "'Bebas Neue', sans-serif", fontSize: '28px', color: 'var(--color-primary)', letterSpacing: '2px' }}>
-            {mins}:{secs}
+          <div style={{ marginTop: '12px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '28px', color: running ? 'var(--color-primary)' : 'rgba(240,234,248,0.4)', letterSpacing: '2px', transition: 'color 200ms ease' }}>
+              {mins}:{secs}
+            </span>
+            {!running && (
+              <span style={{ fontFamily: "'Space Mono', monospace", fontSize: '9px', letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(240,234,248,0.35)' }}>
+                Paused
+              </span>
+            )}
           </div>
         )}
       </div>
@@ -104,20 +112,29 @@ export default function SessionView() {
       {/* Action button */}
       {!sessionStarted ? (
         <button
-          onClick={() => setSessionStarted(true)}
+          onClick={() => { setSessionStarted(true); setRunning(true) }}
           className="btn btn-primary w-full"
           style={{ background: 'var(--color-primary)', color: 'var(--color-text-on-primary, #fff)', fontSize: '17px', padding: '16px' }}
         >
           Start Session
         </button>
       ) : (
-        <button
-          onClick={finishSession}
-          className="btn w-full"
-          style={{ background: '#1A1525', border: '1px solid rgba(255,255,255,0.1)', color: '#F0EAFB', fontSize: '17px', padding: '16px' }}
-        >
-          Finish & Log Session
-        </button>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <button
+            onClick={() => setRunning(r => !r)}
+            className="btn btn-primary"
+            style={{ flex: 1, background: 'var(--color-primary)', color: 'var(--color-text-on-primary, #fff)', fontSize: '17px', padding: '16px' }}
+          >
+            {running ? 'Pause' : 'Resume'}
+          </button>
+          <button
+            onClick={finishSession}
+            className="btn"
+            style={{ flex: 1, background: '#1A1525', border: '1px solid rgba(255,255,255,0.1)', color: '#F0EAFB', fontSize: '17px', padding: '16px' }}
+          >
+            Finish & Log
+          </button>
+        </div>
       )}
     </div>
   )

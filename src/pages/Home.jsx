@@ -4,17 +4,9 @@ import { useAuth } from '../context/AuthContext'
 import { useProfile } from '../hooks/useProfile'
 import { SCHOOLS } from '../data/schools'
 import { NON_NEGOTIABLES } from '../data/nonNegotiables'
-import { TRAINING_PLANS } from '../data/trainingData'
+import { TRAINING_PLANS, weeklyPlanForPosition } from '../data/trainingData'
 import { supabase } from '../lib/supabase'
 import { IconFlame, IconCheck, IconChevronRight } from '../components/Icons'
-
-const DAY_PLANS = {
-  1: 'shooting-heavy',
-  2: 'footwork-focus',
-  3: 'stick-ground-balls',
-  4: 'dodge-finish',
-  5: 'game-speed',
-}
 
 function getGreeting() {
   const h = new Date().getHours()
@@ -42,9 +34,10 @@ export default function Home() {
   const timerRef = useRef(null)
 
   const school = SCHOOLS.find(s => s.id === profile?.dreamSchoolId)
-  const day = new Date().getDay()
-  const todayPlanId = DAY_PLANS[day]
-  const todayPlan = TRAINING_PLANS.find(p => p.id === todayPlanId)
+  const day = new Date().getDay() // 0 Sun .. 6 Sat
+  const weekly = weeklyPlanForPosition(profile?.position)
+  const todayEntry = day >= 1 && day <= 5 ? weekly.days[day - 1] : null
+  const todayPlan = todayEntry ? TRAINING_PLANS.find(p => p.id === todayEntry.planId) : null
 
   useEffect(() => {
     if (!user) return
@@ -72,7 +65,7 @@ export default function Home() {
     const newChecked = checked.includes(num) ? checked.filter(n => n !== num) : [...checked, num]
     setChecked(newChecked)
     const today = new Date().toISOString().slice(0, 10)
-    const completed = newChecked.length === 5
+    const completed = newChecked.length === NON_NEGOTIABLES.length
     await supabase.from('streaks').upsert({ userId: user.id, date: today, completed, nonNegotiablesChecked: newChecked }, { onConflict: 'userId,date' })
     if (completed) setStreak(s => s + 1)
   }
@@ -92,7 +85,7 @@ export default function Home() {
 
   const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0')
   const secs = String(timerSeconds % 60).padStart(2, '0')
-  const allChecked = checked.length === 5
+  const allChecked = checked.length === NON_NEGOTIABLES.length
   const days = daysUntilGraduation(profile?.gradYear)
 
   return (
@@ -188,7 +181,7 @@ export default function Home() {
 
           {allChecked && (
             <div style={{ marginTop: '12px', textAlign: 'center', padding: '12px', background: 'color-mix(in srgb, var(--color-primary) 10%, transparent)', borderRadius: '10px', border: '1px solid color-mix(in srgb, var(--color-primary) 25%, transparent)' }}>
-              <span style={{ fontSize: '13px', color: 'var(--color-primary)', fontWeight: 600 }}>All 5 complete — streak extended</span>
+              <span style={{ fontSize: '13px', color: 'var(--color-primary)', fontWeight: 600 }}>All {NON_NEGOTIABLES.length} complete — streak extended</span>
             </div>
           )}
         </div>

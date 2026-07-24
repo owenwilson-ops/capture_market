@@ -1,4 +1,4 @@
-# Deploying Recruit Ready
+# Deploying Sirius Recruit
 
 The app is a static Vite build (`npm run build` → `dist/`) with client-side
 routing. `vercel.json` configures the build and an SPA fallback so deep links

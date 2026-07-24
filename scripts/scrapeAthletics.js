@@ -29,7 +29,7 @@ const OUTPUT_DIR = join(__dirname, 'output')
 const OUTPUT_FILE = join(OUTPUT_DIR, 'athletics.json')
 
 const USER_AGENT =
-  'RecruitReadyBot/1.0 (recruiting research tool; reads public team roster pages)'
+  'SiriusRecruitBot/1.0 (recruiting research tool; reads public team roster pages)'
 const DELAY_MS = 2500
 const SEASON = activeSeasonYear()
 
